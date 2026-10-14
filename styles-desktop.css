@@ -1,0 +1,19 @@
+/* Desktop: >= 1025px. Mantido separado do layout mobile. */
+@media (min-width:1025px){
+ .topbar{height:84px;display:grid;grid-template-columns:minmax(240px,1fr) auto minmax(170px,1fr);gap:24px;padding-inline:clamp(22px,3.5vw,72px)}
+ .brand{min-width:0;max-width:330px}.brand strong{font-size:.95rem}.brand small{font-size:.71rem}
+ .site-nav{display:flex;align-items:center;justify-content:center;gap:clamp(16px,2.1vw,34px);white-space:nowrap}
+ .top-actions{justify-self:end}.header-donate{padding:12px 18px}
+ .hero{width:min(1320px,calc(100% - 48px));margin:24px auto 0;padding:clamp(45px,5vw,80px);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center;gap:clamp(28px,4vw,72px);min-height:560px}
+ .hero-copy{min-width:0}.hero h1{font-size:clamp(3.3rem,4.6vw,5.6rem);line-height:1.04;max-width:690px;overflow-wrap:normal}
+ .hero-side{position:relative;display:block;min-width:0}.hero-community-photo{width:100%;height:clamp(330px,31vw,465px);margin:0;transform:none}
+ .hero-community-photo img{height:100%;width:100%;object-fit:cover;object-position:center 38%}
+ .hero-logo-card{position:absolute;right:-15px;bottom:-20px;width:104px;height:104px;margin:0;transform:none}
+ .hero-actions{display:flex;align-items:center;flex-wrap:wrap}
+ .donate-path{width:min(1200px,calc(100% - 48px))}
+}
+@media (min-width:1025px) and (max-width:1250px){
+ .topbar{grid-template-columns:minmax(210px,1fr) auto auto;gap:14px;padding-inline:24px}
+ .site-nav{gap:15px}.site-nav a{font-size:.8rem}.brand strong{font-size:.83rem}
+ .hero{padding:44px;gap:28px}.hero h1{font-size:clamp(3rem,4.4vw,4.3rem)}
+}
