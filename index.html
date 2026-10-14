@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#174f55" />
+    <meta name="description" content="Site oficial da comunidade Doe Amor, Espalhe Alegria, no bairro São Benedito. Conheça nossas ações sociais, resultados e próximas campanhas." />
+    <title>Doe Amor, Espalhe Alegria • Site oficial da comunidade</title>
+    <link rel="icon" href="logo-doe-amor.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Início">
+          <img class="brand-logo" src="logo-doe-amor.png" alt="Logo Doe Amor, Espalhe Alegria" />
+          <span><strong>Doe Amor, Espalhe Alegria</strong><small>Rede de ações sociais · São Benedito</small></span>
+        </a>
+        <nav class="site-nav" aria-label="Navegação principal">
+          <a href="#historia">Nossa história</a>
+          <a href="#acoes">Ações realizadas</a>
+          <a href="#organizacao">Organização</a>
+        </nav>
+        <div class="top-actions">
+          <span class="privacy-pill"><span class="privacy-dot"></span>Dados pessoais · acesso por conta</span>
+          <button class="icon-button" id="backupButton" type="button" aria-label="Abrir opções de backup" title="Backup dos dados">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 15v4h14v-4"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="event-title">
+          <div class="hero-copy">
+            <p class="community-name">SITE OFICIAL DA COMUNIDADE <span>· SÃO BENEDITO</span></p>
+            <p class="eyebrow"><span>AMOR + DOAÇÃO</span> = SORRISOS E ESPERANÇA</p>
+            <h1 id="event-title">Doe Amor.<br><span>Espalhe Alegria.</span></h1>
+            <p class="hero-description"><strong>Sua doação vira sorriso.</strong> Uma rede independente de moradores e voluntários que acolhe famílias, crianças e pessoas em situação de vulnerabilidade no bairro São Benedito.</p>
+            <div class="hero-tags">
+              <span>♡ 5 ações já realizadas</span>
+              <span>🎁 117 presentes no 1º Natal</span>
+              <span>🤝 Independente e sem vínculo político</span>
+            </div>
+            <div class="hero-actions">
+              <a class="hero-primary" href="#acoes">Conhecer nossas ações</a>
+              <button class="hero-secondary" type="button" data-go-tab="overview">Acompanhar próxima ação</button>
+            </div>
+          </div>
+          <div class="hero-side">
+            <div class="hero-logo-card">
+              <img src="logo-doe-amor.png" alt="Símbolo da rede Doe Amor, Espalhe Alegria" />
+            </div>
+            <div class="countdown-card" aria-label="Contagem regressiva">
+              <span>Próxima ação</span>
+              <strong id="daysToEvent">—</strong>
+              <small id="countdownLabel">dias para o Dia das Crianças</small>
+            </div>
+          </div>
+          <div class="confetti confetti-one"></div>
+          <div class="confetti confetti-two"></div>
+          <div class="confetti confetti-three"></div>
+        </section>
+
+        <section class="impact-strip" aria-label="Como a sua doação ajuda">
+          <article><span class="impact-number">01</span><div><strong>Um gesto seu</strong><p>Alimentos, brinquedos, roupas ou apoio voluntário podem mudar o dia de alguém.</p></div></article>
+          <article><span class="impact-number">02</span><div><strong>Transparência</strong><p>Acompanhe o que já arrecadamos, o que ainda falta e onde cada item será entregue.</p></div></article>
+          <article><span class="impact-number">03</span><div><strong>Muitos sorrisos</strong><p>Cada doação se transforma em cuidado, respeito e alegria para quem recebe.</p></div></article>
+        </section>
+
+        <section class="history-section" id="historia" aria-labelledby="history-title">
+          <div class="section-heading public-heading">
+            <div><p class="section-kicker">NOSSA RAIZ</p><h2 id="history-title">Como nasceu a nossa história</h2><p class="section-description">Um sonho de Tainara e Joice que se transformou em cuidado com o bairro São Benedito.</p></div>
+          </div>
+          <div class="history-grid">
+            <article class="story-card story-main">
+              <div class="story-copy">
+                <span class="story-icon">♡</span>
+                <p class="section-kicker">TAINARA E JOICE</p>
+                <h3>O sonho de ajudar o próximo.</h3>
+                <p>Nossa história nasceu do sonho de Tainara e sua esposa, Joice, de fazer o bem e ajudar o próximo. Com fé, elas sentiram que Deus colocou em seus corações a missão de transformar esse desejo em ações de amor, cuidado e acolhimento.</p>
+                <p>Elas escolheram começar por São Benedito, onde Joice foi criada e mantém fortes vínculos com moradores, famílias e com a história do lugar.</p>
+                <div class="story-values"><span>Fé</span><span>Amor ao próximo</span><span>Vínculo com o bairro</span><span>União</span></div>
+              </div>
+              <figure class="place-photo">
+                <img src="media/festa-junina/video/festa-junina-video-02-poster.webp" alt="Espaço comunitário do bairro São Benedito" loading="lazy" />
+                <figcaption>Espaço da comunidade no bairro São Benedito</figcaption>
+              </figure>
+            </article>
+            <article class="story-card history-card">
+              <p class="section-kicker">POR QUE SÃO BENEDITO?</p>
+              <h3>Um bairro de identidade própria</h3>
+              <p>São Benedito fica distante da área urbana e, segundo a experiência dos moradores, ainda conta com poucos recursos públicos voltados às necessidades locais. Mesmo assim, o bairro mantém uma identidade forte, com famílias que se conhecem e preservam laços de solidariedade.</p>
+              <p>Foi essa realidade, unida ao vínculo afetivo de Joice com o lugar, que motivou Tainara e Joice a concentrarem ali as primeiras ações.</p>
+            </article>
+            <article class="story-card location-card">
+              <p class="section-kicker">MEMÓRIA DA COMUNIDADE</p>
+              <h3>As raízes do bairro</h3>
+              <p>De acordo com a história transmitida pelos moradores, São Benedito se formou em uma área doada por um fazendeiro à igreja, que na época ajudou a organizar a divisão das terras.</p>
+              <p>Esse relato faz parte da memória oral da comunidade. Hoje, a rede Doe Amor, Espalhe Alegria ajuda a escrever um novo capítulo dessa história por meio de ações independentes e sem vínculo político.</p>
+            </article>
+            <article class="story-card supporters-card">
+              <p class="section-kicker">NOSSA REDE DE APOIO</p>
+              <h3>O sonho ganhou muitas mãos.</h3>
+              <p>Depois da iniciativa de Tainara e Joice, o projeto recebeu a ajuda dos clientes do banho e tosa que elas mantêm na cidade de Marília, onde vivem atualmente. Cada doação e cada gesto ajudaram a transformar a ideia em ações reais para São Benedito.</p>
+              <div class="supporters-list">
+                <div><strong>Leandro Naday</strong><span>Primo e integrante da equipe</span></div>
+                <div><strong>Darcia Fiabane</strong><span>Proprietária da Fazenda Primavera e colaboradora</span></div>
+                <div><strong>Moradores de São Benedito</strong><span>Apoio essencial em todas as ações</span></div>
+                <div><strong>Taina e sua família</strong><span>Moradores do local e parceiros especiais da comunidade</span></div>
+              </div>
+            </article>
+            <article class="story-card records-card">
+              <p class="section-kicker">REGISTROS PÚBLICOS SOBRE O BAIRRO</p>
+              <h3>São Benedito também aparece em ações oficiais.</h3>
+              <p>Embora os moradores relatem que os recursos disponíveis ainda são limitados, há registros públicos de iniciativas realizadas no bairro. Em setembro de 2021, equipes da Saúde da Família, Esporte Social, CRAS e Assistência Social promoveram atividades, atendimento de saúde, vacinação, teatro, brincadeiras e entrega de doces em São Benedito.</p>
+              <p>O portal municipal também registra uma palestra sobre ervas medicinais realizada no bairro rural de São Benedito. Esses documentos ajudam a confirmar a identidade do local e complementam a memória contada pelos moradores.</p>
+              <div class="source-row"><a class="source-link" href="https://www.ocaucu.sp.gov.br/noticia/121/acao-da-saude-setembro-amarelo-em-sao-benedito-/" target="_blank" rel="noreferrer">Ação da Saúde em São Benedito ↗</a><a class="source-link" href="https://ocaucu.sp.gov.br/noticia/83/palestra-sobre-ervas-medicinais-no-bairro-rural-de-sao-benedito/" target="_blank" rel="noreferrer">Palestra no bairro rural ↗</a></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="events-section" id="acoes" aria-labelledby="events-title">
+          <div class="section-heading public-heading">
+            <div><p class="section-kicker">NOSSA TRAJETÓRIA</p><h2 id="events-title">Ações que viraram sorrisos</h2><p class="section-description">Cada evento registra o que foi feito, o que foi arrecadado e quem foi alcançado.</p></div>
+          </div>
+          <div class="impact-numbers" aria-label="Resultados das ações">
+            <div><strong>117</strong><span>presentes no 1º Natal</span></div>
+            <div><strong>150</strong><span>sacolinhas de doces</span></div>
+            <div><strong>45</strong><span>ovos de Páscoa</span></div>
+            <div><strong>100%</strong><span>da ajuda destinada à comunidade</span></div>
+          </div>
+
+          <div class="events-grid">
+            <article class="event-card event-christmas featured-event">
+              <div class="event-preview-cover">
+                <video class="event-preview-video" muted loop playsinline preload="metadata" data-event-preview aria-hidden="true" poster="media/natal-2025/video/natal-video-01-poster.webp"><source src="media/natal-2025/video/natal-video-01.mp4" type="video/mp4" /></video>
+                <span class="event-preview-badge">Prévia de 10 segundos</span>
+                <span class="event-preview-name">1º Natal Solidário</span>
+              </div>
+              <div class="event-card-top"><span class="event-icon">✦</span><span class="event-status done">Realizado</span></div>
+              <p class="event-date">DEZEMBRO DE 2025</p><h3>1º Natal Solidário</h3>
+              <p>O primeiro grande encontro da comunidade levou presentes, doces, alimentos e acolhimento a todas as pessoas presentes.</p>
+              <ul class="event-results"><li><strong>117</strong> presentes arrecadados</li><li><strong>150</strong> sacolinhas de doces</li><li>Alimentos para toda a comunidade</li><li>Todas as pessoas presentes foram presenteadas</li></ul>
+
+              <div class="christmas-gallery">
+                <button class="gallery-photo christmas-photo" type="button" data-lightbox="media/natal-2025/natal-comunidade.webp" data-alt="Moradores reunidos no 1º Natal Solidário de São Benedito em 2025">
+                  <img src="media/natal-2025/natal-comunidade.webp" alt="Moradores reunidos no 1º Natal Solidário de São Benedito em 2025" loading="lazy" />
+                </button>
+                <div class="christmas-caption"><strong>Um Natal para toda a comunidade</strong><span>Famílias, crianças e voluntários reunidos no bairro São Benedito.</span></div>
+              </div>
+
+              <details class="video-album">
+                <summary>Assistir aos 2 vídeos do 1º Natal <span>▶</span></summary>
+                <div class="video-grid christmas-videos">
+                  <figure><video controls preload="metadata" playsinline poster="media/natal-2025/video/natal-video-01-poster.webp"><source src="media/natal-2025/video/natal-video-01.mp4" type="video/mp4" /></video><figcaption>Presentes arrecadados</figcaption></figure>
+                  <figure><video controls preload="metadata" playsinline poster="media/natal-2025/video/natal-video-02-poster.webp"><source src="media/natal-2025/video/natal-video-02.mp4" type="video/mp4" /></video><figcaption>Alegria de Natal</figcaption></figure>
+                </div>
+              </details>
+            </article>
+
+            <article class="event-card event-easter featured-event">
+              <div class="event-preview-cover">
+                <video class="event-preview-video" muted loop playsinline preload="metadata" data-event-preview aria-hidden="true" poster="media/pascoa-2026/video/pascoa-video-01-poster.webp"><source src="media/pascoa-2026/video/pascoa-video-01.mp4" type="video/mp4" /></video>
+                <span class="event-preview-badge">Prévia de 10 segundos</span>
+                <span class="event-preview-name">1ª Páscoa de São Benedito</span>
+              </div>
+              <div class="event-card-top"><span class="event-icon">◇</span><span class="event-status done">Realizado</span></div>
+              <p class="event-date">5 DE ABRIL DE 2026</p><h3>1ª Páscoa de São Benedito</h3>
+              <p>Uma manhã de carinho preparada especialmente para as crianças do bairro.</p>
+              <ul class="event-results"><li><strong>45</strong> ovos de Páscoa distribuídos</li><li>Entrega organizada para as crianças</li><li>Um encontro feito com união e afeto</li></ul>
+              <details class="video-album">
+                <summary>Assistir aos 2 vídeos da Páscoa <span>▶</span></summary>
+                <div class="video-grid two-videos">
+                  <figure><video controls preload="metadata" playsinline poster="media/pascoa-2026/video/pascoa-video-01-poster.webp"><source src="media/pascoa-2026/video/pascoa-video-01.mp4" type="video/mp4" /></video><figcaption>Comunidade reunida na Páscoa</figcaption></figure>
+                  <figure><video controls preload="metadata" playsinline poster="media/pascoa-2026/video/pascoa-video-02-poster.webp"><source src="media/pascoa-2026/video/pascoa-video-02.mp4" type="video/mp4" /></video><figcaption>Celebração de Páscoa com as famílias</figcaption></figure>
+                </div>
+              </details>
+            </article>
+
+            <article class="event-card event-mothers featured-event">
+              <div class="event-preview-cover">
+                <video class="event-preview-video" muted loop playsinline preload="metadata" data-event-preview aria-hidden="true" poster="media/dia-das-maes-2026/video/dia-das-maes-video-01-poster.webp"><source src="media/dia-das-maes-2026/video/dia-das-maes-video-01.mp4" type="video/mp4" /></video>
+                <span class="event-preview-badge">Prévia de 10 segundos</span>
+                <span class="event-preview-name">Dia das Mães</span>
+              </div>
+              <div class="event-card-top"><span class="event-icon">♡</span><span class="event-status done">Realizado</span></div>
+              <p class="event-date">MAIO DE 2026</p><h3>Dia das Mães</h3>
+              <p>Uma homenagem carinhosa às mães da comunidade, celebrando cuidado, força e amor.</p>
+              <ul class="event-results"><li>Presentes preparados para todas as mães presentes</li><li>Momento de homenagem e convivência</li></ul>
+              <div class="event-feature-photo">
+                <button class="gallery-photo" type="button" data-lightbox="media/dia-das-maes-2026/dia-das-maes-presentes.webp" data-alt="Presentes preparados para o Dia das Mães em São Benedito"><img src="media/dia-das-maes-2026/dia-das-maes-presentes.webp" alt="Presentes preparados para o Dia das Mães em São Benedito" loading="lazy" /></button>
+              </div>
+              <details class="video-album">
+                <summary>Assistir ao vídeo do Dia das Mães <span>▶</span></summary>
+                <div class="video-grid single-video">
+                  <figure><video controls preload="metadata" playsinline poster="media/dia-das-maes-2026/video/dia-das-maes-video-01-poster.webp"><source src="media/dia-das-maes-2026/video/dia-das-maes-video-01.mp4" type="video/mp4" /></video><figcaption>Preparação dos presentes para as mães</figcaption></figure>
+                </div>
+              </details>
+            </article>
+
+            <article class="event-card event-fathers featured-event">
+              <div class="event-preview-cover">
+                <video class="event-preview-video" muted loop playsinline preload="metadata" data-event-preview aria-hidden="true" poster="media/dia-dos-pais-2026/video/dia-dos-pais-video-01-poster.webp"><source src="media/dia-dos-pais-2026/video/dia-dos-pais-video-01.mp4" type="video/mp4" /></video>
+                <span class="event-preview-badge">Prévia de 10 segundos</span>
+                <span class="event-preview-name">Dia dos Pais</span>
+              </div>
+              <div class="event-card-top"><span class="event-icon">✧</span><span class="event-status done">Realizado</span></div>
+              <p class="event-date">AGOSTO DE 2026</p><h3>Dia dos Pais</h3>
+              <p>A comunidade se reuniu para reconhecer e homenagear os pais e responsáveis.</p>
+              <ul class="event-results"><li>Homenagem aos pais e responsáveis</li><li>Momento de convivência comunitária</li></ul>
+              <details class="video-album">
+                <summary>Assistir ao vídeo do Dia dos Pais <span>▶</span></summary>
+                <div class="video-grid single-video">
+                  <figure><video controls preload="metadata" playsinline poster="media/dia-dos-pais-2026/video/dia-dos-pais-video-01-poster.webp"><source src="media/dia-dos-pais-2026/video/dia-dos-pais-video-01.mp4" type="video/mp4" /></video><figcaption>Preparação dos presentes para os pais</figcaption></figure>
+                </div>
+              </details>
+            </article>
+
+            <article class="event-card event-june featured-event">
+              <div class="event-preview-cover">
+                <video class="event-preview-video" muted loop playsinline preload="metadata" data-event-preview aria-hidden="true" poster="media/festa-junina/video/festa-junina-video-05-poster.webp"><source src="media/festa-junina/video/festa-junina-video-05.mp4" type="video/mp4" /></video>
+                <span class="event-preview-badge">Prévia de 10 segundos</span>
+                <span class="event-preview-name">1ª Festa Junina de São Benedito</span>
+              </div>
+              <div class="event-card-top"><span class="event-icon">☀</span><span class="event-status done">Realizado</span></div>
+              <p class="event-date">20 DE JUNHO DE 2026</p><h3>1ª Festa Junina de São Benedito</h3>
+              <p>Uma noite de união, comidas típicas, brincadeiras e alegria. Os alimentos foram compartilhados com todas as pessoas presentes.</p>
+              <ul class="event-results"><li>Alimentos e doces para toda a comunidade</li><li>Decoração, música e trajes caipiras</li><li>Participação de moradores e voluntários</li></ul>
+
+              <div class="event-gallery" aria-label="Fotos da Festa Junina">
+                <button class="gallery-photo tall" type="button" data-lightbox="media/festa-junina/festa-junina-03.webp" data-alt="Mesa de alimentos e organizadoras da Festa Junina"><img src="media/festa-junina/festa-junina-03.webp" alt="Mesa de alimentos e organizadoras da Festa Junina" loading="lazy" /></button>
+                <button class="gallery-photo" type="button" data-lightbox="media/festa-junina/festa-junina-01.webp" data-alt="Organizadoras em frente ao painel do arraiá"><img src="media/festa-junina/festa-junina-01.webp" alt="Organizadoras em frente ao painel do arraiá" loading="lazy" /></button>
+                <button class="gallery-photo" type="button" data-lightbox="media/festa-junina/festa-junina-02.webp" data-alt="Moradoras reunidas durante a Festa Junina"><img src="media/festa-junina/festa-junina-02.webp" alt="Moradoras reunidas durante a Festa Junina" loading="lazy" /></button>
+                <button class="gallery-photo" type="button" data-lightbox="media/festa-junina/festa-junina-04.webp" data-alt="Organizadoras no cenário da Festa Junina"><img src="media/festa-junina/festa-junina-04.webp" alt="Organizadoras no cenário da Festa Junina" loading="lazy" /></button>
+              </div>
+
+              <details class="video-album">
+                <summary>Assistir aos 5 vídeos da Festa Junina <span>▶</span></summary>
+                <div class="video-grid">
+                  <figure><video controls preload="metadata" playsinline poster="media/festa-junina/video/festa-junina-video-01-poster.webp"><source src="media/festa-junina/video/festa-junina-video-01.mp4" type="video/mp4" /></video><figcaption>Doações e preparativos</figcaption></figure>
+                  <figure><video controls preload="metadata" playsinline poster="media/festa-junina/video/festa-junina-video-02-poster.webp"><source src="media/festa-junina/video/festa-junina-video-02.mp4" type="video/mp4" /></video><figcaption>O espaço da comunidade</figcaption></figure>
+                  <figure><video controls preload="metadata" playsinline poster="media/festa-junina/video/festa-junina-video-03-poster.webp"><source src="media/festa-junina/video/festa-junina-video-03.mp4" type="video/mp4" /></video><figcaption>Montagem dos kits</figcaption></figure>
+                  <figure><video controls preload="metadata" playsinline poster="media/festa-junina/video/festa-junina-video-04-poster.webp"><source src="media/festa-junina/video/festa-junina-video-04.mp4" type="video/mp4" /></video><figcaption>Mesa e decoração</figcaption></figure>
+                  <figure><video controls preload="metadata" playsinline poster="media/festa-junina/video/festa-junina-video-05-poster.webp"><source src="media/festa-junina/video/festa-junina-video-05.mp4" type="video/mp4" /></video><figcaption>A Festa Junina acontecendo</figcaption></figure>
+                </div>
+              </details>
+            </article>
+
+            <article class="event-card event-kids upcoming-event">
+              <div class="event-card-top"><span class="event-icon">★</span><span class="event-status upcoming">Próxima ação</span></div>
+              <p class="event-date">11 DE OUTUBRO DE 2026</p><h3>1º Dia das Crianças</h3>
+              <p>A próxima grande ação está sendo preparada para cerca de 300 pessoas, com brinquedos, doces, alimentos e muita alegria.</p>
+              <ul class="event-results"><li>Meta de <strong>100 presentes</strong></li><li>Meta de <strong>150 sacolinhas-surpresa</strong></li><li>Meta de <strong>200 pães</strong> para cachorro-quente</li><li>Alimentos e bebidas para a comunidade</li></ul>
+              <div class="public-progress" aria-label="Evolução da arrecadação">
+                <div><strong id="publicDonationPercent">0%</strong><span>da arrecadação garantida</span></div>
+                <div class="public-progress-track"><span id="publicDonationBar" style="width:0%"></span></div>
+              </div>
+              <div class="event-actions">
+                <button class="primary-button event-cta" type="button" data-action="view-pix">Doar via Pix</button>
+                <button class="secondary-button event-cta" type="button" data-go-tab="donations">Ver andamento</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="organizer-section" id="organizacao">
+            <div class="section-heading organizer-heading">
+              <div><p class="section-kicker">ÁREA DE ORGANIZAÇÃO</p><h2>Painel do Dia das Crianças</h2><p class="section-description">Controle de parceiros, doações, tarefas e andamento da próxima ação.</p></div>
+            </div>
+            <div class="sync-box" id="syncBox">
+              <div><strong id="syncTitle">Conectar o painel</strong><p id="syncMessage">Entre na sua conta para guardar os dados no Supabase e acessá-los em outros aparelhos.</p></div>
+              <form id="syncForm" class="sync-form">
+                <label>E-mail <input type="email" name="email" autocomplete="email" required></label>
+                <label>Senha <input type="password" name="password" autocomplete="current-password" minlength="6" required></label>
+                <button class="primary-button" type="submit">Entrar</button>
+                <button class="text-button" type="button" id="syncSignup">Criar conta</button>
+              </form>
+              <button class="text-button" type="button" id="syncSignout" hidden>Sair da conta</button>
+            </div>
+
+        <nav class="tabs" aria-label="Áreas do painel">
+          <button class="tab active" type="button" data-tab="overview" aria-selected="true">
+            <span class="tab-icon">⌂</span><span>Visão geral</span>
+          </button>
+          <button class="tab" type="button" data-tab="partners" aria-selected="false">
+            <span class="tab-icon">◇</span><span>Parceiros</span><span class="tab-count" id="partnerTabCount">0</span>
+          </button>
+          <button class="tab" type="button" data-tab="donations" aria-selected="false">
+            <span class="tab-icon">♡</span><span>Doações</span><span class="tab-count" id="donationTabCount">0</span>
+          </button>
+          <button class="tab" type="button" data-tab="tasks" aria-selected="false">
+            <span class="tab-icon">✓</span><span>Tarefas</span><span class="tab-count" id="taskTabCount">0</span>
+          </button>
+        </nav>
+
+        <section class="workspace">
+          <div class="panel active" id="overviewPanel" data-panel="overview">
+            <div class="section-heading">
+              <div><p class="section-kicker">DIA DAS CRIANÇAS 2026</p><h2>Doação em ação</h2><p class="section-description">Veja como cada gesto está ajudando a construir esse dia especial.</p></div>
+              <button class="primary-button" type="button" data-action="add-partner">+ Cadastrar parceiro</button>
+            </div>
+
+            <div class="stats-grid" id="statsGrid"></div>
+
+            <div class="overview-grid">
+              <article class="card progress-card">
+                <div class="card-heading"><div><p class="section-kicker">ANDAMENTO GERAL</p><h3>Preparação do evento</h3></div><span class="live-badge">Atualizado agora</span></div>
+                <div class="overall-progress">
+                  <div class="progress-ring" id="progressRing" style="--progress:0"><span id="progressPercent">0%</span></div>
+                  <div class="progress-legend" id="progressLegend"></div>
+                </div>
+              </article>
+              <article class="card attention-card">
+                <div class="card-heading"><div><p class="section-kicker">PRÓXIMOS PASSOS</p><h3>O que precisa de atenção</h3></div></div>
+                <div id="attentionList" class="attention-list"></div>
+              </article>
+            </div>
+
+            <article class="card timeline-card">
+              <div class="card-heading"><div><p class="section-kicker">PRAZOS</p><h3>Agenda mais próxima</h3></div><button class="text-button" type="button" data-go-tab="tasks">Ver todas as tarefas →</button></div>
+              <div id="upcomingTasks" class="timeline-list"></div>
+            </article>
+          </div>
+
+          <div class="panel" id="partnersPanel" data-panel="partners">
+            <div class="section-heading">
+              <div><p class="section-kicker">REDE DE APOIO</p><h2>Empresas parceiras</h2><p class="section-description">Registre quem pode ajudar, o contato feito e cada resposta recebida.</p></div>
+              <button class="primary-button" type="button" data-action="add-partner">+ Novo parceiro</button>
+            </div>
+            <div class="toolbar">
+              <label class="search-field"><span aria-hidden="true">⌕</span><input id="partnerSearch" type="search" placeholder="Buscar empresa ou contato" /></label>
+              <select id="partnerFilter" aria-label="Filtrar parceiros por status">
+                <option value="all">Todos os status</option>
+                <option value="mapear">A mapear</option>
+                <option value="contatar">A contatar</option>
+                <option value="aguardando">Aguardando resposta</option>
+                <option value="confirmado">Confirmado</option>
+                <option value="recusado">Não poderá ajudar</option>
+              </select>
+            </div>
+            <div id="partnerList" class="data-list"></div>
+          </div>
+
+          <div class="panel" id="donationsPanel" data-panel="donations">
+            <div class="section-heading">
+              <div><p class="section-kicker">SUA DOAÇÃO VIRA SORRISO</p><h2>Checklist de necessidades</h2><p class="section-description">Acompanhe o que falta e registre cada contribuição recebida.</p></div>
+              <div class="heading-actions"><button class="secondary-button" type="button" data-action="configure-pix">Configurar Pix</button><button class="primary-button" type="button" data-action="add-donation">+ Novo item</button></div>
+            </div>
+            <div class="donation-summary" id="donationSummary"></div>
+            <div id="donationList" class="donation-grid"></div>
+
+            <div class="finance-grid">
+              <article class="card pix-card">
+                <div class="card-heading"><div><p class="section-kicker">DOAÇÃO EM DINHEIRO</p><h3>Conta Pix da ação</h3></div><span class="status-pill status-mapear" id="pixStatus">Aguardando cadastro</span></div>
+                <div id="pixAdminContent"></div>
+              </article>
+              <article class="card receipts-card">
+                <div class="card-heading"><div><p class="section-kicker">TRANSPARÊNCIA</p><h3>Notas de compras</h3></div><button class="primary-button" type="button" data-action="add-receipt">+ Adicionar nota</button></div>
+                <div class="receipt-total" id="receiptTotal"></div>
+                <div class="receipt-list" id="receiptList"></div>
+                <p class="storage-note">Os anexos ficam guardados neste navegador. Para acessar em outro aparelho, envie ou baixe também o arquivo original da nota.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="panel" id="tasksPanel" data-panel="tasks">
+            <div class="section-heading">
+              <div><p class="section-kicker">DIVISÃO DO TRABALHO</p><h2>Tarefas da equipe</h2><p class="section-description">Distribua responsabilidades e acompanhe o que já avançou.</p></div>
+              <button class="primary-button" type="button" data-action="add-task">+ Nova tarefa</button>
+            </div>
+            <div class="task-filters" role="group" aria-label="Filtrar por responsável">
+              <button class="filter-chip active" type="button" data-owner="all">Todos</button>
+              <button class="filter-chip" type="button" data-owner="Tainara">Tainara</button>
+              <button class="filter-chip" type="button" data-owner="Joice">Joice</button>
+              <button class="filter-chip" type="button" data-owner="Leandro">Leandro</button>
+              <button class="filter-chip" type="button" data-owner="Voluntários">Voluntários</button>
+            </div>
+            <div id="taskBoard" class="task-board"></div>
+          </div>
+        </section>
+          </div>
+        </section>
+      </main>
+
+      <footer><span>Doe Amor, Espalhe Alegria</span><span>·</span><span>São Benedito, Ocauçu–SP</span><span>·</span><span>Site independente e sem vínculo político</span><span>·</span><button type="button" class="footer-button" id="importButton">Restaurar backup</button><input type="file" id="importFile" accept="application/json" hidden /></footer>
+    </div>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <header class="modal-header"><div><p class="section-kicker" id="modalKicker"></p><h2 id="modalTitle"></h2></div><button class="close-button" type="button" id="closeModal" aria-label="Fechar">×</button></header>
+        <form id="modalForm" novalidate><div id="modalFields" class="form-grid"></div><div class="form-error" id="formError" role="alert"></div><div class="modal-actions"><button class="secondary-button" type="button" id="cancelModal">Cancelar</button><button class="primary-button" type="submit" id="saveModal">Salvar</button></div></form>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="modal-backdrop" id="pixBackdrop" hidden>
+      <section class="modal pix-share-modal" role="dialog" aria-modal="true" aria-labelledby="pixShareTitle">
+        <header class="modal-header"><div><p class="section-kicker">DOE AMOR, ESPALHE ALEGRIA</p><h2 id="pixShareTitle">Doar via Pix</h2></div><button class="close-button" type="button" id="closePix" aria-label="Fechar">×</button></header>
+        <div id="pixShareContent"></div>
+      </section>
+    </div>
+    <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Visualização da foto">
+      <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Fechar foto">×</button>
+      <img id="lightboxImage" src="" alt="" />
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
