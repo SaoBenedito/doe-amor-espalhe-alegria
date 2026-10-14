@@ -2,6 +2,7 @@
 (() => {
  const videos = [...document.querySelectorAll('video')];
  for (const video of videos) {
+  if (!video.hasAttribute('controls')) continue;
   const source = video.querySelector('source')?.getAttribute('src') || video.getAttribute('src') || '';
   if (!source) continue;
   const container = document.createElement('div');
@@ -17,12 +18,12 @@
   btn.setAttribute('aria-label','Girar este vídeo 90 graus');
   controls.appendChild(btn);
   container.appendChild(controls);
-  const initial = source.includes('pascoa-2026/video/') ? -90 : 0;
+  const initial = 0;
   let angle=initial;
   function layout(){
    const quarter = Math.abs(angle % 180) === 90;
    video.style.setProperty('--rotation',angle+'deg');
-   video.style.setProperty('--video-scale',quarter ? '0.5625' : '1');
+   video.style.setProperty('--video-scale', '1');
    container.classList.toggle('orientation-portrait',quarter);
    btn.title='Orientação atual: '+angle+' graus. Clique para girar';
   }
