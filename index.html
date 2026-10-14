@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#174f55" />
-    <meta name="description" content="Site oficial da comunidade Doe Amor, Espalhe Alegria, no bairro São Benedito. Conheça nossas ações sociais, resultados e próximas campanhas." />
+    <meta name="description" content="Iniciativa comunitária Doe Amor, Espalhe Alegria, no bairro São Benedito. Conheça nossas ações sociais, resultados e próximas campanhas." />
     <title>Doe Amor, Espalhe Alegria • Site oficial da comunidade</title>
     <link rel="icon" href="logo-doe-amor.png" type="image/png" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20261014-3" />
   </head>
   <body>
     <div class="app-shell">
@@ -19,11 +19,11 @@
         <nav class="site-nav" aria-label="Navegação principal">
           <a href="#historia">Nossa história</a>
           <a href="#acoes">Ações realizadas</a>
-          <a href="#organizacao">Organização</a>
+          
           <a href="#como-doar">Como doar</a>
         </nav>
         <div class="top-actions">
-          <span class="privacy-pill"><span class="privacy-dot"></span>Dados pessoais · acesso por conta</span>
+          <a class="header-donate" href="#como-doar">♡ Faça uma doação</a>
           <button class="icon-button" id="backupButton" type="button" aria-label="Abrir opções de backup" title="Backup dos dados">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 15v4h14v-4"/></svg>
           </button>
@@ -33,7 +33,7 @@
       <main>
         <section class="hero" aria-labelledby="event-title">
           <div class="hero-copy">
-            <p class="community-name">SITE OFICIAL DA COMUNIDADE <span>· SÃO BENEDITO</span></p>
+            <p class="community-name">AÇÃO SOCIAL INDEPENDENTE <span>· SÃO BENEDITO</span></p>
             <p class="eyebrow"><span>UNIDOS POR UM SORRISO</span> · SOLIDARIEDADE QUE TRANSFORMA</p>
             <h1 id="event-title">Doe Amor.<br><span>Espalhe Alegria.</span></h1>
             <p class="hero-description"><strong>Unidos Por um Sorriso.</strong> Uma rede independente de moradores e voluntários que acolhe famílias, crianças e pessoas em situação de vulnerabilidade no bairro São Benedito.</p>
@@ -43,8 +43,8 @@
               <span>🤝 Independente e sem vínculo político</span>
             </div>
             <div class="hero-actions">
-              <a class="hero-primary" href="#como-doar">♡ Quero ajudar</a>
-              <button class="hero-secondary" type="button" data-go-tab="overview">Acompanhar próxima ação</button>
+              <a class="hero-primary" href="#como-doar">♡ Quero doar</a>
+              <a class="hero-secondary" href="#acoes">Conheça nossas ações →</a>
             </div>
           </div>
           <div class="hero-side">
@@ -59,7 +59,13 @@
           <div class="confetti confetti-three"></div>
         </section>
 
-        <section class="donate-path" id="como-doar" aria-labelledby="donate-path-title"><div class="donate-path-intro"><p class="section-kicker">FAÇA PARTE DESSA HISTÓRIA</p><h2 id="donate-path-title">Ajudar pode ser simples.</h2><p>Escolha como contribuir. Estamos preparando uma área segura para cadastro de doadores, pagamentos e acompanhamento das contribuições.</p></div><div class="donate-path-grid"><article><span class="donate-path-icon">♡</span><h3>Doar em dinheiro</h3><p>Em breve, contribuições pelo Asaas com confirmação e histórico no seu cadastro.</p><span class="donate-path-label">Pagamento online em preparação</span></article><article><span class="donate-path-icon">🎁</span><h3>Doar produtos</h3><p>Alimentos, brinquedos e itens essenciais fazem a diferença em nossas ações.</p><a href="#acoes">Conhecer as ações →</a></article><article><span class="donate-path-icon">🤝</span><h3>Ser voluntário</h3><p>Seu tempo e sua dedicação também podem transformar vidas.</p><a href="#historia">Conheça nosso projeto →</a></article></div></section>
+        <section class="donate-path" id="como-doar" aria-labelledby="donate-path-title">
+<div class="donate-path-intro"><p class="section-kicker">UNIDOS POR UM SORRISO</p><h2 id="donate-path-title">Sua ajuda transforma histórias.</h2><p>Escolha a forma de contribuir com a comunidade São Benedito. Nenhuma conta é necessária para conhecer o projeto. O cadastro do doador será opcional quando a plataforma de doações estiver pronta.</p></div>
+<div class="donate-path-grid">
+<article class="donation-choice donation-money"><span class="donate-path-icon" aria-hidden="true">♡</span><span class="choice-tag">DOAÇÃO FINANCEIRA</span><h3>Doe qualquer valor</h3><p>Estamos preparando pagamentos seguros e rastreáveis pelo Asaas, com comprovante e acompanhamento.</p><span class="donate-path-label">Pagamento online ainda não disponível</span></article>
+<article class="donation-choice donation-products"><span class="donate-path-icon" aria-hidden="true">🎁</span><span class="choice-tag">DOAÇÃO DE PRODUTOS</span><h3>Doe itens essenciais</h3><p>Alimentos, brinquedos e materiais podem fazer a diferença. Entre em contato para combinar o que doar e a entrega.</p><a class="donation-contact" href="mailto:contato@doeamorespalhealegria.com?subject=Quero%20doar%20produtos%20-%20Doe%20Amor">Quero oferecer produtos ↗</a></article>
+<article class="donation-choice donation-account"><span class="donate-path-icon" aria-hidden="true">♡</span><span class="choice-tag">ACOMPANHAMENTO</span><h3>Suas doações, sua história</h3><p>Uma área exclusiva para doadores consultarem suas próprias contribuições, sem acesso ao painel administrativo.</p><span class="donate-path-label">Área do doador em desenvolvimento</span></article></div>
+<p class="donate-disclaimer">O projeto é uma iniciativa comunitária independente. Os pagamentos online serão disponibilizados somente após a configuração e verificação do responsável pelo recebimento.</p></section>
 
         <section class="impact-strip" aria-label="Como a sua doação ajuda">
           <article><span class="impact-number">01</span><div><strong>Um gesto seu</strong><p>Alimentos, brinquedos, roupas ou apoio voluntário podem mudar o dia de alguém.</p></div></article>
@@ -402,6 +408,6 @@
       <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Fechar foto">×</button>
       <img id="lightboxImage" src="" alt="" />
     </div>
-    <script src="app.js"></script>
+    <script src="app.js?v=20261014-3"></script>
   </body>
 </html>
