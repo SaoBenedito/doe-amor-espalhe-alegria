@@ -7,7 +7,7 @@ window.renderPublications=async function(client,area,status){
  const inputs={};let editing=null;
  const uploadArea=el("section",{className:"publication-upload"},form);
  el("h3",{text:"Enviar fotos e vídeos ao Supabase"},uploadArea);
- el("p",{text:"Escolha arquivos do seu computador. As imagens e vídeos ficam no Storage e os links entram automaticamente no evento."},uploadArea);
+ el("p",{text:"Escolha arquivos do seu computador (até 50 MB por arquivo). Fotos e vídeos ficam no Storage e os links entram automaticamente no evento."},uploadArea);
  const filePicker=el("input",{type:"file",accept:"image/jpeg,image/png,image/webp,image/avif,video/mp4,video/webm",multiple:""},uploadArea);
  const uploadBtn=el("button",{type:"button",text:"Enviar mídias"},uploadArea);
  const uploadStatus=el("p",{role:"status"},uploadArea);
@@ -17,7 +17,7 @@ window.renderPublications=async function(client,area,status){
    for(const file of files){
      const image=file.type.startsWith("image/"),video=file.type.startsWith("video/");
      if(!image&&!video){uploadStatus.textContent="Formato não permitido: "+file.name;continue}
-     if(file.size>10*1024*1024){uploadStatus.textContent="Arquivo acima de 10 MB: "+file.name+". Comprima o vídeo antes do envio.";continue}
+     if(file.size>50*1024*1024){uploadStatus.textContent="Arquivo acima de 50 MB: "+file.name+". Para vídeos maiores será necessário envio em partes.";continue}
      const ext=(file.name.split(".").pop()||"").toLowerCase();
      const safeExt=["jpg","jpeg","png","webp","avif","mp4","webm"].includes(ext)?ext:"bin";
      const path="eventos/"+crypto.randomUUID()+"."+safeExt;
