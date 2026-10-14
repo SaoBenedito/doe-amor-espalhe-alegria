@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Ativar acesso • Doe Amor</title><link rel="stylesheet" href="admin.css"></head>
+<body><header><strong>Doe Amor, Espalhe Alegria • Ativação de acesso</strong></header>
+<main><section id="login"><h1>Criar senha de gestão</h1><p id="status" role="status">Verificando convite...</p><form id="form" hidden><label>Nova senha (mínimo 12 caracteres)<input id="password" type="password" minlength="12" autocomplete="new-password" required></label><label>Confirmar senha<input id="confirm" type="password" minlength="12" autocomplete="new-password" required></label><button type="submit">Ativar minha senha</button></form><p><a href="./">Voltar ao login</a></p></section></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+"use strict";
+const sb=window.supabase.createClient("https://xtwydlgoqmqhbpbojwmp.supabase.co","sb_publishable_E1nafD2jTZRz3Nhx2oTtiQ_SSpW5t-4");
+const permitted=new Set(["tainaramattar27@gmail.com","joice.oliveira5617@gmail.com"]);
+const $=id=>document.getElementById(id);
+async function check(){
+ const params=new URLSearchParams(location.search);
+ if(params.has("error")){ $("status").textContent="Este convite expirou ou é inválido. Solicite um novo convite.";return; }
+ if(params.has("token_hash")&&params.has("type")){
+  const result=await sb.auth.verifyOtp({token_hash:params.get("token_hash"),type:params.get("type")});
+  if(result.error){$("status").textContent="Não foi possível validar o convite: "+result.error.message;return;}
+ }
+ const {data:{user},error}=await sb.auth.getUser();
+ if(error||!user){$("status").textContent="Convite inválido ou sessão expirada. Solicite um novo convite.";return;}
+ if(!permitted.has((user.email||"").toLowerCase())){await sb.auth.signOut();$("status").textContent="Este e-mail não está autorizado.";return;}
+ $("status").textContent="Convite validado para "+user.email+". Defina sua senha."; $("form").hidden=false;
+}
+$("form").addEventListener("submit",async event=>{
+ event.preventDefault();
+ if($("password").value!==$("confirm").value){$("status").textContent="As senhas não coincidem.";return;}
+ const {error}=await sb.auth.updateUser({password:$("password").value});
+ if(error){$("status").textContent="Erro ao definir senha: "+error.message;return;}
+ $("form").hidden=true;history.replaceState(null,"",location.pathname);$("status").textContent="Senha criada! Sua conta aguarda liberação administrativa. Depois, use a página de login do painel.";
+});
+check().catch(()=>{$("status").textContent="Erro ao validar convite. Tente novamente.";});
+</script></body></html>
