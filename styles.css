@@ -537,3 +537,10 @@ body{background:#f7faf9;color:#183b40;line-height:1.6}
 .orientation-rotate:hover{background:#0e5960}
 @media(max-width:600px){.orientation-frame{min-height:200px}.orientation-frame .orientation-video{min-height:200px}.orientation-rotate{font-size:11px;padding:7px 9px}}
 @media(prefers-reduced-motion:reduce){.orientation-frame .orientation-video{transition:none}}
+
+/* Media correction: preserve native preview video orientation; editorial crop for featured event photos */
+.event-preview-cover>.event-preview-video{width:100%!important;height:100%!important;object-fit:cover!important;transform:none!important}
+.event-preview-cover>.orientation-frame{display:contents}
+.christmas-photo img,.event-feature-photo img{object-fit:cover!important;object-position:center 38%!important}
+.orientation-frame:not(.orientation-portrait){aspect-ratio:auto}
+.orientation-frame .orientation-video{transform:rotate(var(--rotation,0deg)) scale(var(--video-scale,1))}
