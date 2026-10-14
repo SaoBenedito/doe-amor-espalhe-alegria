@@ -526,3 +526,14 @@ body{background:#f7faf9;color:#183b40;line-height:1.6}
 @media(max-width:1050px){.header-donate{padding:10px 12px}.site-nav{gap:13px}.topbar{padding-inline:20px}}
 @media(max-width:800px){.topbar{height:auto;min-height:74px;flex-wrap:wrap;padding:12px 16px;gap:8px}.brand{max-width:calc(100% - 135px)}.brand strong{font-size:.83rem}.brand small{font-size:.65rem}.site-nav{order:3;width:100%;justify-content:space-around;padding:7px 0 1px;gap:8px}.site-nav a{font-size:.78rem}.top-actions{margin-left:auto}.header-donate{font-size:.76rem;padding:9px 11px}.hero{padding-top:40px;border-radius:0 0 22px 22px}.hero h1{font-size:clamp(2.75rem,10vw,4.2rem)}.hero-community-photo{height:290px;transform:none}.hero-community-photo img{min-height:0;height:100%}.donate-path{margin:36px 14px;padding:28px 19px}.donate-path-grid article{min-height:0;padding:24px}.donate-path-grid p{flex:initial}.hero-logo-card{transform:none}.event-preview-cover{aspect-ratio:16/10}}
 @media(max-width:420px){.brand-logo{width:38px;height:38px}.brand small{font-size:.59rem}.hero-actions{gap:10px}.hero-primary,.hero-secondary{width:100%}}
+
+/* Video orientation controls (separate from layout breakpoints) */
+.orientation-frame{position:relative;display:grid;place-items:center;width:100%;min-height:240px;overflow:hidden;background:#10272d;border-radius:16px;isolation:isolate}
+.orientation-frame .orientation-video{display:block;width:100%;height:100%;min-height:240px;max-height:520px;object-fit:contain;transform:rotate(var(--rotation,0deg)) scale(var(--video-scale,1));transform-origin:center;transition:transform .2s ease;background:transparent}
+.orientation-frame.orientation-portrait{aspect-ratio:16/10}
+.orientation-frame.orientation-portrait .orientation-video{width:100%;height:100%;object-fit:contain}
+.orientation-actions{position:absolute;z-index:5;right:10px;top:10px;pointer-events:none}
+.orientation-rotate{pointer-events:auto;border:1px solid rgba(255,255,255,.65);border-radius:999px;padding:8px 12px;color:#fff;background:rgba(8,28,34,.88);font-size:12px;font-weight:800;box-shadow:0 4px 15px rgba(0,0,0,.2)}
+.orientation-rotate:hover{background:#0e5960}
+@media(max-width:600px){.orientation-frame{min-height:200px}.orientation-frame .orientation-video{min-height:200px}.orientation-rotate{font-size:11px;padding:7px 9px}}
+@media(prefers-reduced-motion:reduce){.orientation-frame .orientation-video{transition:none}}
