@@ -1,5 +1,8 @@
 "use strict";
-const client=window.supabase.createClient("https://xtwydlgoqmqhbpbojwmp.supabase.co","sb_publishable_E1nafD2jTZRz3Nhx2oTtiQ_SSpW5t-4");
+const supabaseUrl="https://xtwydlgoqmqhbpbojwmp.supabase.co";
+const supabaseKey="sb_publishable_E1nafD2jTZRz3Nhx2oTtiQ_SSpW5t-4";
+const keepSignedIn=localStorage.getItem("doe_admin_remember")==="yes";
+const client=window.supabase.createClient(supabaseUrl,supabaseKey,{auth:{storage:keepSignedIn?localStorage:sessionStorage,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 const $=id=>document.getElementById(id);
 const modules=[["Eventos","events"],["Doações","donations"],["Parceiros","partners"],["Tarefas","tasks"],["Financeiro","financial_entries"],["Conteúdo","site_content"],["Mídia","media_assets"]];
 let currentRole=null;
@@ -27,8 +30,20 @@ async function loadTable(label,table){
  if(!data.length){const p=document.createElement("p");p.textContent="Nenhum registro cadastrado.";area.append(p);return;}
  const pre=document.createElement("pre");pre.textContent=JSON.stringify(data,null,2);area.append(pre);
 }
+$("remember").checked=keepSignedIn;
+$("showPassword").addEventListener("change",()=>{$("password").type=$("showPassword").checked?"text":"password";});
+$("forgotPassword").addEventListener("click",async()=>{
+ const email=$("email").value.trim();
+ if(!email){status("Informe seu e-mail acima para receber o link de redefinição.");$("email").focus();return;}
+ status("Enviando link de redefinição...");
+ const {error}=await client.auth.resetPasswordForEmail(email,{redirectTo:location.origin+"/admin/invite.html"});
+ status(error?"Não foi possível enviar o e-mail: "+error.message:"Se o e-mail estiver cadastrado, você receberá um link para redefinir sua senha. Confira também o spam.");
+});
 $("loginForm").addEventListener("submit",async event=>{
- event.preventDefault();status("Validando acesso...");
+ event.preventDefault();
+ const desired=$("remember").checked;
+ if(desired!==keepSignedIn){localStorage.setItem("doe_admin_remember",desired?"yes":"no");status("Preferência de conexão atualizada. A página será recarregada; entre novamente.");location.reload();return;}
+ status("Validando acesso...");
  const {error}=await client.auth.signInWithPassword({email:$("email").value,password:$("password").value});
  if(error){status("Não foi possível entrar: "+error.message);return;}
  $("password").value="";await refresh();
