@@ -8,13 +8,14 @@
 const sb=window.supabase.createClient("https://xtwydlgoqmqhbpbojwmp.supabase.co","sb_publishable_E1nafD2jTZRz3Nhx2oTtiQ_SSpW5t-4");
 
 const $=id=>document.getElementById(id);
+function traduzirErro(message){const m=String(message||"").toLowerCase();if(m.includes("new password should be different"))return "A nova senha deve ser diferente da senha anterior.";if(m.includes("same password"))return "Escolha uma senha diferente da anterior.";if(m.includes("expired")||m.includes("invalid token")||m.includes("otp"))return "O link expirou ou é inválido. Solicite um novo link.";if(m.includes("password")&&m.includes("least"))return "A senha não atende ao tamanho mínimo exigido.";if(m.includes("rate limit"))return "Muitas tentativas. Aguarde alguns minutos e tente novamente.";return "Não foi possível concluir a operação. Tente novamente ou solicite ajuda à equipe.";}
 async function check(){
  const params=new URLSearchParams(location.search);
  const fragment=new URLSearchParams(location.hash.slice(1));
  if(params.has("error")||fragment.has("error")){ $("status").textContent="Este link expirou ou é inválido. Solicite à pessoa proprietária um novo e-mail de ativação."; $("status").classList.add("error");return; }
  if(params.has("token_hash")&&params.has("type")){
   const result=await sb.auth.verifyOtp({token_hash:params.get("token_hash"),type:params.get("type")});
-  if(result.error){$("status").textContent="Não foi possível validar o convite: "+result.error.message;return;}
+  if(result.error){$("status").textContent="Não foi possível validar o convite: "+result.traduzirErro(error.message);return;}
  }
  const {data:{user},error}=await sb.auth.getUser();
  if(error||!user){$("status").textContent="Convite inválido ou sessão expirada. Solicite um novo convite.";return;}
@@ -39,7 +40,7 @@ $("form").addEventListener("submit",async event=>{
  event.preventDefault();
  if($("password").value!==$("confirm").value){$("status").textContent="As senhas não coincidem.";return;}
  const {error}=await sb.auth.updateUser({password:$("password").value});
- if(error){$("status").textContent="Erro ao definir senha: "+error.message;return;}
+ if(error){$("status").textContent="Não foi possível definir a senha: "+traduzirErro(error.message);return;}
  $("form").hidden=true;history.replaceState(null,"",location.pathname);$("status").textContent="Senha criada! Agora você pode entrar no painel administrativo.";
 });
 document.querySelectorAll('input[type="password"]').forEach(input=>{const button=document.createElement("button");button.type="button";button.textContent="Mostrar senha";button.className="password-toggle";button.setAttribute("aria-pressed","false");input.insertAdjacentElement("afterend",button);button.addEventListener("click",()=>{const visible=input.type==="password";input.type=visible?"text":"password";button.textContent=visible?"Ocultar senha":"Mostrar senha";button.setAttribute("aria-pressed",String(visible));});});
