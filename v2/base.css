@@ -6,3 +6,7 @@
 /* Foto da equipe: arco contínuo e imagem preenchendo toda a moldura, sem margens internas */
 .hero-art{background:transparent;padding:0;overflow:visible}
 .hero-art>img{display:block;object-fit:cover;object-position:center center;background:transparent;clip-path:inset(0 round 50% 50% 22px 22px / 35% 35% 22px 22px)}
+
+/* A MOLDURA (caixa) recebe o arco, e não somente a fotografia */
+.hero-art{border-radius:50% 50% 22px 22px / 35% 35% 22px 22px;isolation:isolate;background:transparent;overflow:visible}
+.hero-art>img{border-radius:inherit;clip-path:none;object-fit:cover;object-position:center;width:100%;height:100%}
