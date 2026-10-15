@@ -6,7 +6,8 @@
  if(!root)return;
  fetch(api,{headers:{apikey:key}}).then(r=>{if(!r.ok)throw Error("Falha ao carregar");return r.json()}).then(items=>{
  if(!items.length){root.remove();return}
- const track=document.createElement("div");track.className="managed-banner-track";root.append(track);\n const slides=items.map(item=>{
+ const track=document.createElement("div");track.className="managed-banner-track";root.append(track);
+ const slides=items.map(item=>{
  const section=document.createElement("article");section.className="managed-banner-slide";
  if(item.image_url){try{const url=new URL(item.image_url);if(url.protocol==="https:"){const img=document.createElement("img");img.src=url.href;img.alt="";img.className="managed-banner-photo";section.append(img)}}catch{}}
  const inner=document.createElement("div");inner.className="managed-banner-copy";
