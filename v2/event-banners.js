@@ -15,7 +15,7 @@
  const p=document.createElement("p");p.textContent=item.subtitle||"Sua contribuição transforma vidas.";
  inner.append(eyebrow,h,p);
  if(item.event_date){const date=document.createElement("strong");date.className="managed-banner-date";date.textContent="📅 "+new Date(item.event_date+"T12:00:00").toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"});inner.append(date)}
- const a=document.createElement("a");a.className="managed-banner-action";a.textContent=item.button_label||"Contribuir agora ↗";const target=item.button_url||"#doar";if(target.startsWith("#")||target.startsWith("/")&&!target.startsWith("//")||target.startsWith("https://"))a.href=target;else a.href="#doar";inner.append(a);section.append(inner);root.append(section);return section
+ const a=document.createElement("a");a.className="managed-banner-action";a.textContent=item.button_label||"Contribuir agora ↗";const target=item.button_url||"#doar";if(target.startsWith("#")||target.startsWith("/")&&!target.startsWith("//")||target.startsWith("https://"))a.href=target==="#doar"&&!document.getElementById("doar")?"#contribuir":target;else a.href="#doar";inner.append(a);section.append(inner);root.append(section);return section
  });
  let current=0;function show(n){current=(n+slides.length)%slides.length;slides.forEach((el,i)=>{el.hidden=i!==current;el.setAttribute("aria-hidden",String(i!==current))})}
  show(0);
