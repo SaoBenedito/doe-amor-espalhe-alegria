@@ -59,7 +59,8 @@ async function refresh(){
 async function loadTable(label,table){
  if(!currentRole||currentRole==="collaborator"&&table!=="my_profile")return;
  const area=$("content");area.replaceChildren();const intro=document.createElement("div");intro.className="module-intro";const heading=document.createElement("h2");heading.textContent=label;const desc=document.createElement("p");desc.textContent=descriptions[table]||"Gerencie as informações desta área.";intro.append(heading,desc);area.append(intro);
- if(table==="donation_goals"){await renderDonationGoals(area);return;}\n if(table==="my_profile"){await window.renderMyProfile(client,area,status);return;}
+ if(table==="donation_goals"){await renderDonationGoals(area);return;}
+ if(table==="my_profile"){await window.renderMyProfile(client,area,status);return;}
  if(table==="admin_invites"){await window.renderAdminInvites(client,area,status);return;}
  if(table==="product_donation_offers"){await window.renderProductOffers(client,area,status);return;}
  if(table==="donation_expenditures"){await window.renderExpenditures(client,area,status);return;}
