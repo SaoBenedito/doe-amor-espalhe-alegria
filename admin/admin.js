@@ -4,7 +4,7 @@ const supabaseKey="sb_publishable_E1nafD2jTZRz3Nhx2oTtiQ_SSpW5t-4";
 const keepSignedIn=localStorage.getItem("doe_admin_remember")==="yes";
 const client=window.supabase.createClient(supabaseUrl,supabaseKey,{auth:{storage:keepSignedIn?localStorage:sessionStorage,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 const $=id=>document.getElementById(id);
-const modules=[["Publicações","event_publications"],["Eventos","events"],["Doações","donations"],["Parceiros","partners"],["Tarefas","tasks"],["Financeiro","financial_entries"],["Conteúdo","site_content"],["Mídia","media_assets"]];
+const modules=[["Voluntários","volunteer_applications"],["Publicações","event_publications"],["Eventos","events"],["Doações","donations"],["Parceiros","partners"],["Tarefas","tasks"],["Financeiro","financial_entries"],["Conteúdo","site_content"],["Mídia","media_assets"]];
 let currentRole=null;
 function status(message){$("status").textContent=message;}
 function showLogin(){currentRole=null;$("dashboard").hidden=true;$("login").hidden=false;$("logout").hidden=true;}
@@ -24,7 +24,7 @@ async function refresh(){
 async function loadTable(label,table){
  if(!currentRole)return;
  const area=$("content");area.replaceChildren();
- if(table==="event_publications"){await window.renderPublications(client,area,status);return;}
+ if(table==="event_publications"){await window.renderPublications(client,area,status);return;}\n if(table==="volunteer_applications"){await window.renderVolunteers(client,area,status);return;}
  const heading=document.createElement("h2");heading.textContent=label;area.append(heading);
  const {data,error}=await client.from(table).select("*").limit(50);
  if(error){status("Não foi possível carregar "+label+": "+error.message);return;}
