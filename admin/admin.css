@@ -34,3 +34,26 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 @media(max-width:390px){#modules{grid-template-columns:1fr}#modules .module-tab{min-height:0}}
 
 #status{color:#18734d;font-weight:750;font-size:14px}
+
+/* Tela de login moderna */
+#login{max-width:475px;margin:45px auto 20px;padding:clamp(25px,5vw,42px);border:1px solid #f1e3ea;border-radius:26px;box-shadow:0 25px 70px #56304a1a;background:#fff}
+.login-brand{display:flex;align-items:center;gap:13px;margin-bottom:24px}
+.login-brand img{width:70px;height:70px;object-fit:contain;border-radius:16px;background:#fff4f8;padding:5px}
+.login-brand span{color:#b74470;font-weight:800;font-size:11px;letter-spacing:.1em;line-height:1.5}
+#login h1{font-size:clamp(27px,4vw,34px);letter-spacing:-.045em;line-height:1.15;margin:0 0 12px;color:#193c40}
+.login-description{color:#617a7d;font-size:14px;line-height:1.7;margin:0 0 25px}
+#login form>label:not(.checkline){font-size:13px;font-weight:700;color:#2b5156;margin:17px 0 7px}
+#login input[type=email],#login input[type=password],#login input[type=text]{height:49px;border-radius:12px;border:1px solid #d7e5e3;background:#fbfdfd;padding:12px 14px;font:inherit;font-size:14px}
+#login input[type=email]{margin-top:7px}
+.password-field{position:relative}
+.password-field input{width:100%;padding-right:93px!important;margin-top:0}
+.password-field button{position:absolute;right:7px;top:50%;transform:translateY(-50%);background:#fceaf1;color:#ad426d;padding:9px 11px;border-radius:9px;font-size:12px;font-weight:750;margin:0;min-width:71px}
+.password-field button:hover{background:#f8d6e4}
+#login .checkline{display:flex;align-items:center;gap:10px;margin:20px 0;font-size:13px;color:#506b70}
+#login .checkline input{width:17px;height:17px;flex:none;margin:0;accent-color:#e86d91}
+#login .login-submit{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:49px;margin:10px 0 12px;border-radius:12px;background:linear-gradient(110deg,#d95081,#e87599);font-weight:800;box-shadow:0 8px 22px #df6c9433}
+#login .login-submit:hover{background:linear-gradient(110deg,#bd386b,#d95886)}
+#login .textbutton{display:block;margin:12px auto;color:#ae426b;font-size:13px;font-weight:700;text-decoration:none}
+#login .textbutton:hover{text-decoration:underline}
+.login-footer{font-size:12px;line-height:1.6;color:#819496;text-align:center;border-top:1px solid #edf0ef;margin:25px 0 0;padding-top:18px}
+@media(max-width:600px){#login{margin:16px auto 20px;padding:25px 21px}.login-brand img{width:58px;height:58px}}
