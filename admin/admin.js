@@ -42,7 +42,8 @@ async function renderDonationGoals(area){
  form.onsubmit=async e=>{e.preventDefault();const cents=Math.round(Number(amount.value)*100);if(!Number.isSafeInteger(cents)||cents<=0){msg.textContent="Informe um valor válido maior que zero.";return;}save.disabled=true;msg.textContent="Salvando meta...";const {data:{user}}=await client.auth.getUser();const {error:saveError}=await client.from("donation_goals").upsert({id:1,title:title.value.trim(),goal_cents:cents,updated_by:user.id,updated_at:new Date().toISOString()},{onConflict:"id"});save.disabled=false;if(saveError){msg.textContent="Não foi possível salvar: "+saveError.message;return;}summary.textContent=title.value.trim()+" — "+brl(cents);status("Meta salva! A página de Transparência já pode mostrar o novo valor.");close();};
 }
 async function refresh(){
- const {data:{user},error}=await client.auth.getUser();
+ const {data:{session},error}=await client.auth.getSession();
+ const user=session?.user;
  if(error||!user){showLogin();return;}
  const {data:member,error:roleError}=await client.from("admin_members").select("role,active").eq("user_id",user.id).maybeSingle();
  if(roleError||!member?.active){await client.auth.signOut();showLogin();status("Esta conta ainda não possui autorização administrativa.");return;}
@@ -84,10 +85,23 @@ $("forgotPassword").addEventListener("click",async()=>{
 });
 $("loginForm").addEventListener("submit",async event=>{
  event.preventDefault();
+ const submit=$("loginForm").querySelector('[type="submit"]');
+ if(submit.disabled)return;
+ submit.disabled=true;const oldText=submit.textContent;submit.textContent="Entrando...";
  const desired=$("remember").checked;
- if(desired!==keepSignedIn){localStorage.setItem("doe_admin_remember",desired?"yes":"no");status("Preferência atualizada. Recarregue a página e entre novamente.");return;}
- status("Validando acesso...");
- try{const {error}=await client.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});if(error){status("Não foi possível entrar: "+error.message);return;}$("password").value="";await refresh();}catch(err){status("Falha de conexão ao entrar. Confira sua internet e tente novamente.");}
+ try{
+  if(desired!==keepSignedIn){localStorage.setItem("doe_admin_remember",desired?"yes":"no");status("Preferência salva. Recarregue a página e tente novamente.");return;}
+  status("Validando e-mail e senha...");
+  const attempt=client.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});
+  const result=await Promise.race([attempt,new Promise((_,reject)=>setTimeout(()=>reject(new Error("Tempo de resposta esgotado")),15000))]);
+  if(result.error){status("Não foi possível entrar: "+result.error.message);return;}
+  if(!result.data?.session){status("O servidor não retornou uma sessão. Tente novamente.");return;}
+  status("Acesso confirmado. Abrindo painel...");
+  await refresh();
+  if(!$("dashboard").hidden){$("password").value="";status("● Conectado");}
+  else status("Sua sessão foi criada, mas o painel não foi liberado. Verifique as permissões com a equipe.");
+ }catch(err){status("Erro ao entrar: "+(err?.message||"Tente novamente."));}
+ finally{submit.disabled=false;submit.textContent=oldText;}
 });
 $("logout").onclick=async()=>{await client.auth.signOut();showLogin();status("Sessão encerrada.");};
 refresh().catch(()=>{showLogin();status("Não foi possível verificar o acesso.");});
