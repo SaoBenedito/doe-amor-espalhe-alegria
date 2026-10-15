@@ -16,3 +16,5 @@
 .hero h1{font-size:clamp(40px,4.1vw,52px)}
 .sticker{width:105px;height:105px;font-size:17px;left:-15px}
 }
+
+@media(min-width:901px){.story{grid-template-columns:minmax(0, .95fr) minmax(0,1.05fr);gap:clamp(40px,7vw,110px)}.story-image{width:100%;max-width:460px;aspect-ratio:4/5;height:auto}.story-image img{height:100%;max-height:none;object-fit:cover;object-position:center 43%}}
