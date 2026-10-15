@@ -42,5 +42,6 @@ $("form").addEventListener("submit",async event=>{
  if(error){$("status").textContent="Erro ao definir senha: "+error.message;return;}
  $("form").hidden=true;history.replaceState(null,"",location.pathname);$("status").textContent="Senha criada! Agora você pode entrar no painel administrativo.";
 });
+document.querySelectorAll('input[type="password"]').forEach(input=>{const button=document.createElement("button");button.type="button";button.textContent="Mostrar senha";button.className="password-toggle";button.setAttribute("aria-pressed","false");input.insertAdjacentElement("afterend",button);button.addEventListener("click",()=>{const visible=input.type==="password";input.type=visible?"text":"password";button.textContent=visible?"Ocultar senha":"Mostrar senha";button.setAttribute("aria-pressed",String(visible));});});
 check().catch(()=>{$("status").textContent="Erro ao validar convite. Tente novamente.";});
 </script></body></html>
