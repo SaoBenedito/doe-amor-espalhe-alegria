@@ -21,7 +21,7 @@ async function refresh(){
   if((table==="financial_entries"||table==="donation_expenditures")&&!["owner","admin","manager"].includes(currentRole))continue;
   const button=document.createElement("button");button.className="module-tab";button.type="button";const title=document.createElement("strong");title.textContent=label;const help=document.createElement("small");help.textContent=descriptions[table]||"Gerencie os registros.";button.append(title,help);button.onclick=()=>{nav.querySelectorAll(".module-tab").forEach(item=>item.classList.remove("active"));button.classList.add("active");loadTable(label,table);};nav.append(button);
  }
- status("Acesso autenticado.");}
+ status("● Conectado");}
 async function loadTable(label,table){
  if(!currentRole)return;
  const area=$("content");area.replaceChildren();const intro=document.createElement("div");intro.className="module-intro";const heading=document.createElement("h2");heading.textContent=label;const desc=document.createElement("p");desc.textContent=descriptions[table]||"Gerencie as informações desta área.";intro.append(heading,desc);area.append(intro);
