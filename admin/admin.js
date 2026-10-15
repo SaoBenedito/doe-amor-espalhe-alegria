@@ -31,14 +31,13 @@ async function loadTable(label,table){
  if(["events","partners","tasks","financial_entries","site_content","media_assets","donation_records"].includes(table)){await window.renderAdminEditor(client,area,status,table);return;}
  if(table==="event_publications"){await window.renderPublications(client,area,status);return;}
  if(table==="volunteer_applications"){await window.renderVolunteers(client,area,status);return;}
- const heading=document.createElement("h2");heading.textContent=label;area.append(heading);
  const {data,error}=await client.from(table).select("*").limit(50);
  if(error){status("Não foi possível carregar "+label+": "+error.message);return;}
  if(!data.length){const p=document.createElement("p");p.textContent="Nenhum registro cadastrado.";area.append(p);return;}
  const pre=document.createElement("pre");pre.textContent=JSON.stringify(data,null,2);area.append(pre);
 }
 $("remember").checked=keepSignedIn;
-$("showPassword").addEventListener("change",()=>{$("password").type=$("showPassword").checked?"text":"password";});
+$("showPassword").addEventListener("click",()=>{const visible=$("password").type==="password";$("password").type=visible?"text":"password";$("showPassword").textContent=visible?"Ocultar":"Mostrar";$("showPassword").setAttribute("aria-pressed",String(visible));$("showPassword").setAttribute("aria-label",visible?"Ocultar senha":"Mostrar senha");});
 $("forgotPassword").addEventListener("click",async()=>{
  const email=$("email").value.trim();
  if(!email){status("Informe seu e-mail acima para receber o link de redefinição.");$("email").focus();return;}
