@@ -4,7 +4,7 @@ const supabaseKey="sb_publishable_E1nafD2jTZRz3Nhx2oTtiQ_SSpW5t-4";
 const keepSignedIn=localStorage.getItem("doe_admin_remember")==="yes";
 const client=window.supabase.createClient(supabaseUrl,supabaseKey,{auth:{storage:keepSignedIn?localStorage:sessionStorage,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 const $=id=>document.getElementById(id);
-const modules=[["Voluntários","volunteer_applications"],["Publicações","event_publications"],["Eventos","events"],["Doações online","donations"],["Doações presenciais e produtos","donation_records"],["Aplicação dos recursos","donation_expenditures"],["Parceiros","partners"],["Tarefas","tasks"],["Financeiro","financial_entries"],["Conteúdo","site_content"],["Mídia","media_assets"]];
+const modules=[["Voluntários","volunteer_applications"],["Publicações","event_publications"],["Eventos","events"],["Doações online","donations"],["Doações presenciais e produtos","donation_records"],["Ofertas de produtos","product_donation_offers"],["Aplicação dos recursos","donation_expenditures"],["Parceiros","partners"],["Tarefas","tasks"],["Financeiro","financial_entries"],["Conteúdo","site_content"],["Mídia","media_assets"]];
 let currentRole=null;
 function status(message){$("status").textContent=message;}
 function showLogin(){currentRole=null;$("dashboard").hidden=true;$("login").hidden=false;$("logout").hidden=true;}
@@ -24,6 +24,7 @@ async function refresh(){
 async function loadTable(label,table){
  if(!currentRole)return;
  const area=$("content");area.replaceChildren();
+ if(table==="product_donation_offers"){await window.renderProductOffers(client,area,status);return;}
  if(table==="donation_expenditures"){await window.renderExpenditures(client,area,status);return;}
  if(table==="donations"){await window.renderInfinitepayDonations(client,area,status);return;}
  if(["events","partners","tasks","financial_entries","site_content","media_assets","donation_records"].includes(table)){await window.renderAdminEditor(client,area,status,table);return;}
