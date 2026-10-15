@@ -31,9 +31,9 @@ async function check(){
  }
  const meta=user.user_metadata||{};
  const fullName=String(meta.full_name||meta.name||meta.display_name||"").trim();
- const firstName=fullName.split(/\\s+/)[0];
+ const firstName=fullName.split(/\s+/)[0];
  if(firstName){$("welcomeTitle").textContent="Que alegria ter você aqui, "+firstName+"! 💗";}
- $("status").textContent="Convite validado para "+(fullName||user.email)+". Defina sua senha."; $("form").hidden=false;
+ $("status").textContent=firstName?"Convite validado, "+firstName+"! Agora defina sua senha.":"Convite validado! Agora defina sua senha."; $("form").hidden=false;
 }
 $("form").addEventListener("submit",async event=>{
  event.preventDefault();
