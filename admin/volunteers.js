@@ -1,0 +1,17 @@
+"use strict";
+window.renderVolunteers=async function(client,area,status){
+const h=document.createElement("h2");h.textContent="Cadastros de voluntários";area.append(h);
+const info=document.createElement("p");info.textContent="Os dados abaixo são privados. Utilize-os somente para organizar o voluntariado e entrar em contato com os inscritos.";area.append(info);
+const reload=document.createElement("button");reload.textContent="Atualizar cadastros";area.append(reload);
+const container=document.createElement("div");container.className="volunteer-admin-list";area.append(container);
+const states=["novo","contatado","aprovado","inativo"];
+async function load(){container.replaceChildren();const {data,error}=await client.from("volunteer_applications").select("id,full_name,whatsapp,email,city,availability,message,status,created_at").order("created_at",{ascending:false}).limit(200);if(error){status("Erro ao consultar voluntários: "+error.message);return}if(!data.length){container.textContent="Ainda não há voluntários cadastrados.";return}
+const count=document.createElement("p");count.textContent=data.length+" cadastro(s) exibido(s).";container.append(count);
+for(const person of data){const card=document.createElement("article");card.style.cssText="border:1px solid #dce9e4;border-radius:14px;padding:16px;margin:12px 0;background:#fbfdfb";
+const title=document.createElement("h3");title.textContent=person.full_name;card.append(title);
+for(const [label,value] of [["WhatsApp",person.whatsapp],["E-mail",person.email],["Cidade/bairro",person.city],["Disponibilidade",person.availability],["Mensagem",person.message],["Cadastro",new Date(person.created_at).toLocaleString("pt-BR")]]){if(!value)continue;const p=document.createElement("p");p.textContent=label+": "+value;p.style.margin="7px 0";card.append(p)}
+const link=document.createElement("a");link.href="https://wa.me/"+person.whatsapp;link.target="_blank";link.rel="noopener noreferrer";link.textContent="Conversar no WhatsApp ↗";card.append(link);
+const label=document.createElement("label");label.textContent="Situação: ";label.style.display="block";const select=document.createElement("select");select.style.cssText="padding:10px;margin:8px;border-radius:8px";for(const st of states){const o=document.createElement("option");o.value=st;o.textContent=st;o.selected=person.status===st;select.append(o)}select.onchange=async()=>{select.disabled=true;const {error}=await client.from("volunteer_applications").update({status:select.value}).eq("id",person.id);if(error)status("Não foi possível alterar: "+error.message);else status("Situação atualizada.");select.disabled=false};label.append(select);card.append(label);container.append(card)}
+}
+reload.onclick=load;await load();
+};
