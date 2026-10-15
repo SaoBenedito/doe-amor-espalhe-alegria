@@ -83,3 +83,15 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .publication-form{display:flex;flex-direction:column;gap:15px}.publication-form>h3{margin:18px 0 2px;color:#244852}.publication-form label{font-weight:700;color:#315761}.publication-form label input,.publication-form label textarea,.publication-form label select{margin-top:7px}.publication-upload{padding:20px;border-radius:18px;border:1px dashed #e7a6c3;background:linear-gradient(120deg,#fff4f9,#f1fbff);margin:4px 0 12px}.publication-upload h3{margin:0 0 7px;color:#a93670}.publication-upload p{color:#627b84;font-size:13px}.publication-upload button{background:#d94489;color:#fff;border:0;border-radius:12px;padding:11px 17px}.publication-advanced{padding:16px 18px;background:#f6f9fa;border:1px solid #dce9eb;border-radius:15px}.publication-advanced summary{cursor:pointer;font-weight:800;color:#376673}.publication-advanced p{font-size:13px;color:#6a818a}.publication-advanced label{display:block;margin-top:14px}.publication-card{border-radius:14px;border:1px solid #e1e9ed;padding:16px;margin-bottom:12px;background:#fff}.publication-card strong{color:#294b55}.publication-card p{color:#71858a;font-size:13px}
 
 .goal-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;margin-top:20px}.goal-list-item{background:linear-gradient(130deg,#fff7fb,#f4fbff);border:1px solid #eedee7;border-radius:18px;padding:20px}.goal-list-item h3{margin:0 0 10px;color:#a93270}.goal-list-item p{font-size:14px;color:#56707b}.goal-list-item button{margin-top:10px;border:1px solid #edbfd6;background:white;color:#b63878;border-radius:12px;padding:10px 15px;cursor:pointer;font-weight:700}.goal-modal-form .checkline{display:flex;align-items:center;gap:10px}.goal-modal-form .checkline input{width:auto;margin:0}
+
+/* Gerenciamento de banners */
+.banner-admin-layout{display:grid;grid-template-columns:minmax(270px,1fr) minmax(260px,1fr);gap:24px;align-items:start;margin-top:18px}
+.banner-admin-form{background:#f7faf9;padding:22px;border:1px solid #e0ebe7;border-radius:16px}
+.banner-admin-form textarea{display:block;width:100%;min-height:90px;border:1px solid #c6d5d6;border-radius:9px;padding:12px;margin-top:7px;font:inherit}
+.banner-admin-form label{font-weight:650}
+.banner-admin-list{display:grid;gap:14px;align-content:start}
+.banner-admin-card{padding:18px;border:1px solid #e0ebe7;border-radius:14px;background:white;box-shadow:0 5px 20px #00000008}
+.banner-admin-card img{width:100%;max-height:180px;object-fit:cover;border-radius:10px;display:block;margin-bottom:10px}
+.banner-admin-card strong{display:block}
+.banner-admin-card p{margin:8px 0;color:#60787b}
+@media(max-width:760px){.banner-admin-layout{grid-template-columns:1fr}}
