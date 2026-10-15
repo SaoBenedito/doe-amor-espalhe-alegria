@@ -1,0 +1,10 @@
+"use strict";
+window.renderAdminInvites=function(client,area,status){
+const section=document.createElement("section");section.className="invite-panel";section.innerHTML='<h3>Convidar administrador</h3><p>Envie um convite para criar uma conta individual. A pessoa receberá um e-mail para definir sua própria senha.</p><form class="invite-form"><label>Nome completo<input name="name" required minlength="2" maxlength="100" placeholder="Nome da pessoa"></label><label>E-mail<input name="email" type="email" required placeholder="exemplo@gmail.com"></label><label>Permissão<select name="role"><option value="admin">Administrador — gerencia o projeto</option><option value="manager">Gestor — acesso operacional</option></select></label><button type="submit">Enviar convite</button></form><p class="invite-feedback" role="status"></p><p class="invite-note">Somente a conta proprietária pode convidar. Confira também a pasta de spam do destinatário.</p>';area.append(section);
+const form=section.querySelector("form"),button=form.querySelector("button"),feedback=section.querySelector(".invite-feedback");
+form.addEventListener("submit",async e=>{e.preventDefault();button.disabled=true;feedback.textContent="Enviando convite...";try{
+const {data:{session}}=await client.auth.getSession();if(!session)throw Error("Sessão expirada");
+const response=await fetch("https://xtwydlgoqmqhbpbojwmp.supabase.co/functions/v1/admin-invite-member",{method:"POST",headers:{"Content-Type":"application/json","apikey":"sb_publishable_E1nafD2jTZRz3Nhx2oTtiQ_SSpW5t-4","Authorization":"Bearer "+session.access_token},body:JSON.stringify({name:form.elements.name.value.trim(),email:form.elements.email.value.trim(),role:form.elements.role.value})});
+const result=await response.json();if(!response.ok)throw Error(result.error||"Não foi possível enviar o convite");feedback.textContent=result.message;status("Convite enviado.");form.reset()
+}catch(err){feedback.textContent=err.message;status("Falha no envio do convite.")}finally{button.disabled=false}});
+};
