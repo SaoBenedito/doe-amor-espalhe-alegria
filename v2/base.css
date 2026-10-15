@@ -3,10 +3,13 @@
 #eventDialog{width:min(640px,calc(100vw - 32px));height:min(640px,calc(100dvh - 32px));max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain}
 #eventDialog .dialog-top{position:sticky;top:0;z-index:2;background:#fff}
 
-/* Foto da equipe: arco contínuo e imagem preenchendo toda a moldura, sem margens internas */
-.hero-art{background:transparent;padding:0;overflow:visible}
-.hero-art>img{display:block;object-fit:cover;object-position:center center;background:transparent;clip-path:inset(0 round 50% 50% 22px 22px / 35% 35% 22px 22px)}
 
-/* A MOLDURA (caixa) recebe o arco, e não somente a fotografia */
-.hero-art{border-radius:50% 50% 22px 22px / 35% 35% 22px 22px;isolation:isolate;background:transparent;overflow:visible}
-.hero-art>img{border-radius:inherit;clip-path:none;object-fit:cover;object-position:center;width:100%;height:100%}
+/* Revisão das molduras: cada imagem respeita seu próprio enquadramento. */
+.hero-art{position:relative;isolation:isolate;width:min(100%,400px);aspect-ratio:1;overflow:visible;padding:0;background:transparent;border:0;border-radius:0}
+.hero-art>img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;border-radius:50% 50% 22px 22px / 35% 35% 22px 22px;clip-path:none;background:transparent}
+.hero-art .sticker{z-index:1}
+.story-image{height:auto;aspect-ratio:auto;overflow:hidden;border-radius:22px;background:transparent}
+.story-image img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;object-position:center;border-radius:22px}
+.event-card img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;object-position:center;background:#eaf3ed}
+.dialog-gallery img{width:100%;height:auto;max-height:420px;object-fit:contain;background:#eaf3ed}
+@media(max-width:900px){.story-image{height:auto}.story-image img{height:auto;max-height:none}.event-card img{height:auto;aspect-ratio:4/3}}
