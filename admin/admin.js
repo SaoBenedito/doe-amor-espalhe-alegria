@@ -7,7 +7,7 @@ const $=id=>document.getElementById(id);
 const modules=[["Voluntários","volunteer_applications"],["Publicações","event_publications"],["Eventos","events"],["Doações online","donations"],["Metas de arrecadação","donation_goals"],["Doações presenciais e produtos","donation_records"],["Ofertas de produtos","product_donation_offers"],["Aplicação dos recursos","donation_expenditures"],["Parceiros","partners"],["Tarefas","tasks"],["Financeiro","financial_entries"],["Conteúdo","site_content"],["Mídia","media_assets"],["Meu perfil","my_profile"],["Administradores e convites","admin_invites"]];
 const descriptions={"my_profile":"Atualize seus dados pessoais, foto, e-mail e senha.","volunteer_applications":"Veja inscrições e organize os voluntários.","event_publications":"Publique ações com fotos, vídeos e datas no site público.","events":"Cadastre e planeje eventos internos.","donations":"Confira pagamentos online confirmados.","donation_goals":"Defina a meta pública de arrecadação que aparecerá na página de Transparência.","donation_records":"Registre dinheiro presencial e produtos recebidos.","product_donation_offers":"Responda às ofertas e organize retiradas ou entregas.","donation_expenditures":"Registre gastos e escolha o que divulgar.","partners":"Cadastre empresas e apoiadores.","tasks":"Distribua responsabilidades e acompanhe tarefas.","financial_entries":"Organize os lançamentos financeiros.","site_content":"Atualize informações e textos do projeto.","media_assets":"Organize referências de fotos e arquivos.","admin_invites":"Convide pessoas da equipe com acesso individual e seguro."};
 let currentRole=null;
-function status(message){$("status").textContent=message;}
+function status(message){$("status").textContent=message;const loginStatus=$("loginStatus");if(loginStatus)loginStatus.textContent=$("login").hidden?"":message;}
 function showLogin(){currentRole=null;$("dashboard").hidden=true;$("login").hidden=false;$("logout").hidden=true;}
 async function renderDonationProgress(area){
  const section=document.createElement("section");section.className="donation-progress";
@@ -85,11 +85,9 @@ $("forgotPassword").addEventListener("click",async()=>{
 $("loginForm").addEventListener("submit",async event=>{
  event.preventDefault();
  const desired=$("remember").checked;
- if(desired!==keepSignedIn){localStorage.setItem("doe_admin_remember",desired?"yes":"no");status("Preferência de conexão atualizada. A página será recarregada; entre novamente.");location.reload();return;}
+ if(desired!==keepSignedIn){localStorage.setItem("doe_admin_remember",desired?"yes":"no");status("Preferência atualizada. Recarregue a página e entre novamente.");return;}
  status("Validando acesso...");
- const {error}=await client.auth.signInWithPassword({email:$("email").value,password:$("password").value});
- if(error){status("Não foi possível entrar: "+error.message);return;}
- $("password").value="";await refresh();
+ try{const {error}=await client.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});if(error){status("Não foi possível entrar: "+error.message);return;}$("password").value="";await refresh();}catch(err){status("Falha de conexão ao entrar. Confira sua internet e tente novamente.");}
 });
 $("logout").onclick=async()=>{await client.auth.signOut();showLogin();status("Sessão encerrada.");};
 refresh().catch(()=>{showLogin();status("Não foi possível verificar o acesso.");});
