@@ -8,7 +8,7 @@
  if(!items.length){root.remove();return}
  const track=document.createElement("div");track.className="managed-banner-track";root.append(track);
  const slides=items.map(item=>{
- const section=document.createElement("article");section.className="managed-banner-slide";
+ const section=document.createElement("article");section.className="managed-banner-slide";if(item.image_url)section.classList.add("managed-banner-slide--image");
  if(item.image_url){try{const url=new URL(item.image_url);if(url.protocol==="https:"){const img=document.createElement("img");img.src=url.href;img.alt="";img.className="managed-banner-photo";section.append(img)}}catch{}}
  const inner=document.createElement("div");inner.className="managed-banner-copy";
  const eyebrow=document.createElement("span");eyebrow.className="managed-banner-eyebrow";eyebrow.textContent="✦ PRÓXIMO EVENTO · DOE AMOR";
@@ -16,7 +16,7 @@
  const p=document.createElement("p");p.textContent=item.subtitle||"Sua contribuição transforma vidas.";
  inner.append(eyebrow,h,p);
  if(item.event_date){const date=document.createElement("strong");date.className="managed-banner-date";date.textContent="📅 "+new Date(item.event_date+"T12:00:00").toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"});inner.append(date)}
- const a=document.createElement("a");a.className="managed-banner-action";a.textContent=item.button_label||"Contribuir agora ↗";const target=item.button_url||"#doar";if(target.startsWith("#")||target.startsWith("/")&&!target.startsWith("//")||target.startsWith("https://"))a.href=target==="#doar"&&!document.getElementById("doar")?"#contribuir":target;else a.href="#doar";inner.append(a);section.append(inner);track.append(section);return section
+ const a=document.createElement("a");a.className="managed-banner-action";a.textContent=item.button_label||"Contribuir agora ↗";const target=item.button_url||"#doar";if(target.startsWith("#")||target.startsWith("/")&&!target.startsWith("//")||target.startsWith("https://"))a.href=target==="#doar"&&!document.getElementById("doar")?"#contribuir":target;else a.href="#doar";inner.append(a);if(!item.image_url)section.append(inner);if(item.image_url){const full=document.createElement("a");full.className="managed-banner-full-link";full.href=a.href;full.setAttribute("aria-label","Abrir campanha: "+item.title+". "+(item.button_label||"Contribuir agora"));section.append(full)}track.append(section);return section
  });
  let current=0;
  const dots=document.createElement("div");dots.className="managed-banner-dots";
