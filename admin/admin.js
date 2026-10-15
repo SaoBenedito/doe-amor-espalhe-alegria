@@ -24,6 +24,7 @@ async function refresh(){
 async function loadTable(label,table){
  if(!currentRole)return;
  const area=$("content");area.replaceChildren();
+ if(table==="donations"){await window.renderInfinitepayDonations(client,area,status);return;}
  if(table==="event_publications"){await window.renderPublications(client,area,status);return;}\n if(table==="volunteer_applications"){await window.renderVolunteers(client,area,status);return;}
  const heading=document.createElement("h2");heading.textContent=label;area.append(heading);
  const {data,error}=await client.from(table).select("*").limit(50);
