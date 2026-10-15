@@ -17,7 +17,17 @@ async function check(){
  }
  const {data:{user},error}=await sb.auth.getUser();
  if(error||!user){$("status").textContent="Convite inválido ou sessão expirada. Solicite um novo convite.";return;}
- const {data:member,error:roleError}=await sb.from("admin_members").select("active").eq("user_id",user.id).maybeSingle();if(roleError||!member?.active){$("status").textContent="Esta conta ainda não recebeu permissão administrativa.";return;}
+ let member=null,roleError=null;
+ for(let attempt=0;attempt<8;attempt++){
+  const result=await sb.from("admin_members").select("role,active").eq("user_id",user.id).maybeSingle();
+  member=result.data;roleError=result.error;
+  if(member?.active&&["owner","admin"].includes(member.role))break;
+  if(attempt<7){$("status").textContent="Confirmando sua permissão administrativa...";await new Promise(resolve=>setTimeout(resolve,1500));}
+ }
+ if(roleError||!member?.active||!["owner","admin"].includes(member.role)){
+  $("status").textContent="Não foi possível confirmar sua permissão. Peça à pessoa proprietária para verificar seu convite no painel administrativo.";
+  return;
+ }
  $("status").textContent="Convite validado para "+user.email+". Defina sua senha."; $("form").hidden=false;
 }
 $("form").addEventListener("submit",async event=>{
