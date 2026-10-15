@@ -68,3 +68,5 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .profile-form p[role=status]{align-self:center;grid-column:1/-1}
 .profile-avatar{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #f7d5e4}
 @media(max-width:650px){.profile-form{grid-template-columns:1fr}.profile-editor,.profile-account{padding:16px}}
+
+.password-toggle{display:inline-flex;align-items:center;justify-content:center;margin:7px 0 8px;padding:7px 12px;border:1px solid #f4c6db;border-radius:9px;background:#fff0f6;color:#a82d6b;font-size:12px;font-weight:750;cursor:pointer}.password-toggle:hover{background:#fbd8e9}.profile-form .password-toggle{width:max-content}
