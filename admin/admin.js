@@ -4,7 +4,7 @@ const supabaseKey="sb_publishable_E1nafD2jTZRz3Nhx2oTtiQ_SSpW5t-4";
 const keepSignedIn=localStorage.getItem("doe_admin_remember")==="yes";
 const client=window.supabase.createClient(supabaseUrl,supabaseKey,{auth:{storage:keepSignedIn?localStorage:sessionStorage,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 const $=id=>document.getElementById(id);
-const modules=[["Voluntários","volunteer_applications"],["Publicações","event_publications"],["Eventos","events"],["Doações","donations"],["Parceiros","partners"],["Tarefas","tasks"],["Financeiro","financial_entries"],["Conteúdo","site_content"],["Mídia","media_assets"]];
+const modules=[["Voluntários","volunteer_applications"],["Publicações","event_publications"],["Eventos","events"],["Doações","donations"],["Aplicação dos recursos","donation_expenditures"],["Parceiros","partners"],["Tarefas","tasks"],["Financeiro","financial_entries"],["Conteúdo","site_content"],["Mídia","media_assets"]];
 let currentRole=null;
 function status(message){$("status").textContent=message;}
 function showLogin(){currentRole=null;$("dashboard").hidden=true;$("login").hidden=false;$("logout").hidden=true;}
@@ -17,13 +17,14 @@ async function refresh(){
  $("role").textContent="Perfil autorizado: "+currentRole;
  const nav=$("modules");nav.replaceChildren();
  for(const [label,table] of modules){
-  if(table==="financial_entries"&&!["owner","admin","manager"].includes(currentRole))continue;
+  if((table==="financial_entries"||table==="donation_expenditures")&&!["owner","admin","manager"].includes(currentRole))continue;
   const button=document.createElement("button");button.textContent=label;button.onclick=()=>loadTable(label,table);nav.append(button);
  }
  status("Acesso autenticado.");}
 async function loadTable(label,table){
  if(!currentRole)return;
  const area=$("content");area.replaceChildren();
+ if(table==="donation_expenditures"){await window.renderExpenditures(client,area,status);return;}
  if(table==="donations"){await window.renderInfinitepayDonations(client,area,status);return;}
  if(table==="event_publications"){await window.renderPublications(client,area,status);return;}
  if(table==="volunteer_applications"){await window.renderVolunteers(client,area,status);return;}
