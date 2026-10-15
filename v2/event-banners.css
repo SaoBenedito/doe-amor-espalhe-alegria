@@ -8,3 +8,13 @@
 .managed-banner-controls{z-index:3}
 @media(max-width:700px){.managed-banner-dots{bottom:17px}.managed-banner-controls{bottom:10px;right:10px}.managed-banner-controls button{width:34px;height:34px}}
 @media(prefers-reduced-motion:reduce){.managed-banner-track{transition:none}}
+
+/* Banner com arte pronta: mostrar imagem limpa, sem filtro nem textos duplicados */
+.managed-banner-slide--image{aspect-ratio:2.5/1;min-height:0;background:#fff;display:block}
+.managed-banner-slide--image::after{display:none}
+.managed-banner-slide--image .managed-banner-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:0}
+.managed-banner-full-link{position:absolute;inset:0;z-index:2;display:block;cursor:pointer}
+.managed-banner-full-link:focus-visible{outline:4px solid #fff;outline-offset:-5px;border-radius:20px}
+.managed-banner-slide--image .managed-banner-copy{display:none}
+.managed-banner-carousel .managed-banner-controls,.managed-banner-carousel .managed-banner-dots{z-index:4}
+@media(max-width:700px){.managed-banner-slide--image{aspect-ratio:2.5/1;min-height:0}.managed-banner-slide--image .managed-banner-photo{object-fit:contain}}
