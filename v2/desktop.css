@@ -20,3 +20,7 @@
 @media(min-width:901px){.story{grid-template-columns:minmax(0, .95fr) minmax(0,1.05fr);gap:clamp(40px,7vw,110px)}.story-image{width:100%;max-width:460px;aspect-ratio:4/5;height:auto}.story-image img{height:100%;max-height:none;object-fit:cover;object-position:center 43%}}
 
 @media(min-width:901px){.story.story--editorial{grid-template-columns:minmax(0,460px) minmax(0,1fr);justify-content:center;gap:clamp(36px,6vw,100px)}.story.story--editorial .story-image{width:100%;aspect-ratio:4/5}}
+
+/* Cartazes quadrados de eventos: mostrar imagem completa, sem recortes */
+.event-card img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;object-position:center;background:#f8f5f6}
+.event-card:first-child img{height:auto;min-height:0;max-height:none;aspect-ratio:1/1;object-fit:contain}
