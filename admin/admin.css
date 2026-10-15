@@ -70,3 +70,9 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 @media(max-width:650px){.profile-form{grid-template-columns:1fr}.profile-editor,.profile-account{padding:16px}}
 
 .password-toggle{display:inline-flex;align-items:center;justify-content:center;margin:7px 0 8px;padding:7px 12px;border:1px solid #f4c6db;border-radius:9px;background:#fff0f6;color:#a82d6b;font-size:12px;font-weight:750;cursor:pointer}.password-toggle:hover{background:#fbd8e9}.profile-form .password-toggle{width:max-content}
+
+/* Indicador de arrecadação */
+.donation-progress{margin:20px 0 26px;padding:25px;border-radius:22px;background:linear-gradient(130deg,#fff1f7 0%,#fff 52%,#ecfaff 100%);border:1px solid #f2dce8;box-shadow:0 10px 30px #9a557315}
+.donation-progress-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.donation-progress-head h2{margin:8px 0;font-size:clamp(20px,2.5vw,27px);color:#173e47}.donation-progress-head p{color:#5e7680;margin:0 0 15px}.donation-progress-icon{font-size:32px}
+.donation-progress-values,.donation-progress-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.donation-progress-values strong{font-size:clamp(19px,2.6vw,30px);color:#c34281}.donation-progress-values span,.donation-progress-foot span{font-size:14px;color:#49636a}
+.donation-progress-track{height:19px;background:#e8eaf0;border-radius:30px;overflow:hidden;margin:14px 0 10px}.donation-progress-fill{height:100%;width:0;background:linear-gradient(90deg,#ec74a5,#db428a,#62c9db);border-radius:30px;transition:width .6s ease}.donation-progress-foot strong{color:#b73576}.donation-progress-note{font-size:12px;color:#667d80;margin:16px 0 0}.donation-goal-edit{background:#fff;color:#a93470;border:1px solid #edbcd4;padding:8px 13px;font-size:12px}.donation-goal-edit:hover{background:#fbe6f0;color:#8c235c}
