@@ -13,3 +13,8 @@
 .event-card img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;object-position:center;background:#eaf3ed}
 .dialog-gallery img{width:100%;height:auto;max-height:420px;object-fit:contain;background:#eaf3ed}
 @media(max-width:900px){.story-image{height:auto}.story-image img{height:auto;max-height:none}.event-card img{height:auto;aspect-ratio:4/3}}
+
+/* Moldura editorial da história: retrato amplo, sem faixas vazias */
+.story-image{position:relative;width:100%;max-width:460px;aspect-ratio:4/5;height:auto;justify-self:center;overflow:hidden;border-radius:28px;background:#e8eee8;box-shadow:0 22px 55px rgba(24,61,59,.12)}
+.story-image img{display:block;width:100%;height:100%;max-height:none;object-fit:cover;object-position:center 43%;border-radius:0}
+.story-image::after{content:"";pointer-events:none;position:absolute;inset:0;border:1px solid rgba(24,61,59,.08);border-radius:inherit}
