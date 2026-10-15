@@ -15,7 +15,7 @@ async function check(){
  if(params.has("error")||fragment.has("error")){ $("status").textContent="Este link expirou ou é inválido. Solicite à pessoa proprietária um novo e-mail de ativação."; $("status").classList.add("error");return; }
  if(params.has("token_hash")&&params.has("type")){
   const result=await sb.auth.verifyOtp({token_hash:params.get("token_hash"),type:params.get("type")});
-  if(result.error){$("status").textContent="Não foi possível validar o convite: "+result.traduzirErro(error.message);return;}
+  if(result.error){$("status").textContent="Não foi possível validar o convite: "+traduzirErro(result.error.message);return;}
  }
  const {data:{user},error}=await sb.auth.getUser();
  if(error||!user){$("status").textContent="Convite inválido ou sessão expirada. Solicite um novo convite.";return;}
@@ -23,10 +23,10 @@ async function check(){
  for(let attempt=0;attempt<8;attempt++){
   const result=await sb.from("admin_members").select("role,active").eq("user_id",user.id).maybeSingle();
   member=result.data;roleError=result.error;
-  if(member?.active&&["owner","admin"].includes(member.role))break;
-  if(attempt<7){$("status").textContent="Confirmando sua permissão administrativa...";await new Promise(resolve=>setTimeout(resolve,1500));}
+  if(member?.active&&["owner","admin","collaborator"].includes(member.role))break;
+  if(attempt<7){$("status").textContent="Confirmando seu acesso à equipe...";await new Promise(resolve=>setTimeout(resolve,1500));}
  }
- if(roleError||!member?.active||!["owner","admin"].includes(member.role)){
+ if(roleError||!member?.active||!["owner","admin","collaborator"].includes(member.role)){
   $("status").textContent="Não foi possível confirmar sua permissão. Peça à pessoa proprietária para verificar seu convite no painel administrativo.";
   return;
  }
@@ -41,7 +41,7 @@ $("form").addEventListener("submit",async event=>{
  if($("password").value!==$("confirm").value){$("status").textContent="As senhas não coincidem.";return;}
  const {error}=await sb.auth.updateUser({password:$("password").value});
  if(error){$("status").textContent="Não foi possível definir a senha: "+traduzirErro(error.message);return;}
- $("form").hidden=true;history.replaceState(null,"",location.pathname);$("status").textContent="Senha criada! Agora você pode entrar no painel administrativo.";
+ $("form").hidden=true;history.replaceState(null,"",location.pathname);$("status").textContent="Senha criada! Agora você pode entrar no painel e acessar Meu perfil.";
 });
 document.querySelectorAll('input[type="password"]').forEach(input=>{const button=document.createElement("button");button.type="button";button.textContent="Mostrar senha";button.className="password-toggle";button.setAttribute("aria-pressed","false");input.insertAdjacentElement("afterend",button);button.addEventListener("click",()=>{const visible=input.type==="password";input.type=visible?"text":"password";button.textContent=visible?"Ocultar senha":"Mostrar senha";button.setAttribute("aria-pressed",String(visible));});});
 check().catch(()=>{$("status").textContent="Erro ao validar convite. Tente novamente.";});
