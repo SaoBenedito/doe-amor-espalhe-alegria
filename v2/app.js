@@ -40,7 +40,7 @@ function render(posts){
   if(items.length<2){controls.hidden=true;continue}
   let timer=null;const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const stop=()=>{if(timer){clearInterval(timer);timer=null}};
-  const start=()=>{stop();if(!reduce&&!document.hidden&&!dialog.open&&viewport.scrollWidth>viewport.clientWidth+2)timer=setInterval(()=>move(1),5500)};
+  const start=()=>{stop();if(!reduce&&!document.hidden&&!dialog.open&&viewport.scrollWidth>viewport.clientWidth+2)timer=setInterval(()=>move(1),3000)};
   group.addEventListener("mouseenter",stop);group.addEventListener("mouseleave",start);
   group.addEventListener("focusin",stop);group.addEventListener("focusout",e=>{if(!group.contains(e.relatedTarget))start()});
   dialog.addEventListener("close",start);document.addEventListener("visibilitychange",()=>document.hidden?stop():start());
