@@ -1,0 +1,14 @@
+/* Publicações organizadas em carrosséis anuais */
+#eventGrid{display:block}
+.event-year-group{min-width:0;margin:28px 0 42px}
+.event-year-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+.event-year-heading .action-year-title{margin:0}
+.event-year-controls{display:flex;gap:8px}
+.event-year-controls[hidden]{display:none}
+.event-year-controls button{width:42px;height:42px;border:1px solid #f1b8cb;border-radius:50%;background:#fff;color:#b92970;font-size:27px;line-height:1;cursor:pointer;box-shadow:0 4px 12px #3d183011}
+.event-year-controls button:hover,.event-year-controls button:focus-visible{background:#d93683;color:white}
+.event-year-viewport{overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#e9a4c1 transparent;padding:5px 3px 18px}
+.event-year-track{display:flex;align-items:stretch;gap:18px}
+.event-year-track .event-card{flex:0 0 min(280px,78vw);width:min(280px,78vw);min-width:0;scroll-snap-align:start;margin:0}
+@media(min-width:900px){.event-year-track .event-card{flex-basis:min(300px,29vw);width:min(300px,29vw)}}
+@media(prefers-reduced-motion:reduce){.event-year-viewport{scroll-behavior:auto}}
