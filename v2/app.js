@@ -38,14 +38,9 @@ function render(posts){
   const move=direction=>{const card=track.querySelector(".event-card");if(!card)return;const step=card.getBoundingClientRect().width+18;const max=viewport.scrollWidth-viewport.clientWidth;if(max<=2)return;const destination=direction>0&&viewport.scrollLeft>=max-8?0:direction<0&&viewport.scrollLeft<=8?max:Math.max(0,Math.min(max,viewport.scrollLeft+direction*step));viewport.scrollTo({left:destination,behavior:"smooth"})};
   previous.addEventListener("click",()=>move(-1));next.addEventListener("click",()=>move(1));
   if(items.length<2){controls.hidden=true;continue}
-  let timer=null;const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const stop=()=>{if(timer){clearInterval(timer);timer=null}};
-  const start=()=>{stop();if(!reduce&&!document.hidden&&!dialog.open&&viewport.scrollWidth>viewport.clientWidth+2)timer=setInterval(()=>move(1),3000)};
-  group.addEventListener("mouseenter",stop);group.addEventListener("mouseleave",start);
-  group.addEventListener("focusin",stop);group.addEventListener("focusout",e=>{if(!group.contains(e.relatedTarget))start()});
-  dialog.addEventListener("close",start);document.addEventListener("visibilitychange",()=>document.hidden?stop():start());
-  viewport.addEventListener("touchstart",stop,{passive:true});viewport.addEventListener("touchend",start,{passive:true});
-  window.addEventListener("resize",start);start();
+  // Mantém a rolagem ativa, mesmo com o mouse sobre os cartões ou após navegação manual.
+  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!reduce)setInterval(()=>{if(!document.hidden)move(1)},3000);
  }
 }
 (async()=>{try{const res=await fetch(API+"/rest/v1/event_publications?select=*&published=eq.true&order=created_at.desc",{headers:{apikey:KEY}});if(!res.ok)throw new Error("HTTP "+res.status);const posts=await res.json();posts.sort((a,b)=>{const year=p=>{const m=String(p.title||"").match(/20[0-9]{2}/)||String(p.event_date||"").match(/20[0-9]{2}/);return m?Number(m[0]):0};return year(b)-year(a)||String(b.event_date||"").localeCompare(String(a.event_date||""))||String(b.created_at).localeCompare(String(a.created_at))});render(posts)}catch(err){grid.replaceChildren();grid.append(el("p","events-empty","Não foi possível carregar as publicações agora. Tente atualizar a página."));console.error("Erro ao carregar eventos",err)}})();
