@@ -13,6 +13,39 @@ menu.addEventListener("click",()=>{const opened=nav.classList.toggle("open");men
 nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");menu.setAttribute("aria-expanded","false");menu.textContent="☰"}));
 function youtubeId(raw){try{const u=new URL(raw);const host=u.hostname.toLowerCase().replace(/^www\./,"");let id=null;if(host==="youtu.be")id=u.pathname.split("/")[1];else if(["youtube.com","m.youtube.com","music.youtube.com","youtube-nocookie.com"].includes(host)){if(u.pathname==="/watch")id=u.searchParams.get("v");else if(/^\/(shorts|embed|live)\//.test(u.pathname))id=u.pathname.split("/")[2]}return id&&/^[A-Za-z0-9_-]{11}$/.test(id)?id:null}catch{return null}}
 function openEvent(post){body.replaceChildren();const wrap=el("div","dialog-body");wrap.append(el("small","kicker",post.event_date||"DATA NÃO INFORMADA"),el("h2","",post.title));for(const line of [post.location,post.details])if(line)wrap.append(el("p","",line));const photos=[post.cover_url,...(post.photos||[])].filter(mediaUrl).filter((src,i,arr)=>arr.indexOf(src)===i),videos=(post.videos||[]).filter(mediaUrl);if(photos.length){wrap.append(el("h3","","Galeria de fotos"));const gallery=el("div","dialog-gallery");for(const src of photos){const img=el("img");img.src=src;img.alt="Foto do evento "+post.title;img.loading="lazy";gallery.append(img)}wrap.append(gallery)}if(videos.length){wrap.append(el("h3","","Vídeos do evento"));const gallery=el("div","dialog-videos");for(const src of videos){const id=youtubeId(src);if(id){const iframe=el("iframe");iframe.src="https://www.youtube-nocookie.com/embed/"+id;iframe.title="Vídeo do YouTube: "+post.title;iframe.loading="lazy";iframe.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";iframe.allowFullscreen=true;iframe.referrerPolicy="strict-origin-when-cross-origin";iframe.style.cssText="width:100%;aspect-ratio:16/9;border:0;border-radius:14px";gallery.append(iframe)}else{const video=el("video");video.src=src;video.controls=true;video.playsInline=true;video.preload="none";gallery.append(video)}}wrap.append(gallery)}body.append(wrap);dialog.showModal()}
-function render(posts){grid.replaceChildren();if(!posts.length){const empty=el("div","events-empty");empty.append(el("h3","","Em breve, novas histórias por aqui."),el("p","","Estamos organizando nossas publicações. Acompanhe as próximas ações sociais e seus registros."));grid.append(empty);return}
-let previousYear="";for(const post of posts){const match=String(post.title||"").match(/20[0-9]{2}/)||String(post.event_date||"").match(/20[0-9]{2}/);const year=match?match[0]:"Sem data";if(year!==previousYear){const h=el("h2","action-year-title",year==="Sem data"?"Outras histórias": "Ações sociais de "+year);grid.append(h);previousYear=year}const card=el("article","event-card");const img=el("img");img.src=mediaUrl(post.cover_url)||mediaUrl((post.photos||[])[0])||"/logo-doe-amor.png";img.loading="lazy";img.alt="Capa do evento "+post.title;card.append(img);const content=el("div","event-content");const phase={past:"REALIZADO",current:"EM ANDAMENTO",future:"EM BREVE"}[post.phase]||"EVENTO";content.append(el("small","",(post.event_date||"DATA A CONFIRMAR")+" · "+phase),el("h3","",post.title),el("p","",post.summary||"Conheça essa ação social."));const btn=el("button","", "Ver evento e registros ↗");btn.type="button";btn.addEventListener("click",()=>openEvent(post));content.append(btn);card.append(content);grid.append(card)}}
+function render(posts){
+ grid.replaceChildren();
+ if(!posts.length){const empty=el("div","events-empty");empty.append(el("h3","","Em breve, novas histórias por aqui."),el("p","","Estamos organizando nossas publicações. Acompanhe as próximas ações sociais e seus registros."));grid.append(empty);return}
+ const groups=new Map();
+ const getYear=post=>{const date=String(post.event_date||"").match(/^(20[0-9]{2})/);if(date)return date[1];const title=String(post.title||"").match(/20[0-9]{2}/);return title?title[0]:"Sem data"};
+ for(const post of posts){const year=getYear(post);if(!groups.has(year))groups.set(year,[]);groups.get(year).push(post)}
+ for(const [year,items] of groups){
+  const group=el("section","event-year-group");
+  const heading=el("div","event-year-heading");
+  heading.append(el("h2","action-year-title",year==="Sem data"?"Outras histórias":"Ações sociais de "+year));
+  const controls=el("div","event-year-controls");
+  const previous=el("button","","‹"),next=el("button","","›");
+  for(const [button,label] of [[previous,"Evento anterior"],[next,"Próximo evento"]]){button.type="button";button.setAttribute("aria-label",label+" de "+year)}
+  controls.append(previous,next);heading.append(controls);group.append(heading);
+  const viewport=el("div","event-year-viewport"),track=el("div","event-year-track");
+  viewport.setAttribute("aria-label","Publicações de "+year);viewport.append(track);group.append(viewport);grid.append(group);
+  for(const post of items){
+   const card=el("article","event-card");const img=el("img");img.src=mediaUrl(post.cover_url)||mediaUrl((post.photos||[])[0])||"/logo-doe-amor.png";img.loading="lazy";img.alt="Capa do evento "+post.title;card.append(img);
+   const content=el("div","event-content");const phase={past:"REALIZADO",current:"EM ANDAMENTO",future:"EM BREVE"}[post.phase]||"EVENTO";
+   content.append(el("small","",(post.event_date||"DATA A CONFIRMAR")+" · "+phase),el("h3","",post.title),el("p","",post.summary||"Conheça essa ação social."));
+   const btn=el("button","","Ver evento e registros ↗");btn.type="button";btn.addEventListener("click",()=>openEvent(post));content.append(btn);card.append(content);track.append(card);
+  }
+  const move=direction=>{const card=track.querySelector(".event-card");if(!card)return;const step=card.getBoundingClientRect().width+18;const max=viewport.scrollWidth-viewport.clientWidth;if(max<=2)return;const destination=direction>0&&viewport.scrollLeft>=max-8?0:direction<0&&viewport.scrollLeft<=8?max:Math.max(0,Math.min(max,viewport.scrollLeft+direction*step));viewport.scrollTo({left:destination,behavior:"smooth"})};
+  previous.addEventListener("click",()=>move(-1));next.addEventListener("click",()=>move(1));
+  if(items.length<2){controls.hidden=true;continue}
+  let timer=null;const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const stop=()=>{if(timer){clearInterval(timer);timer=null}};
+  const start=()=>{stop();if(!reduce&&!document.hidden&&!dialog.open&&viewport.scrollWidth>viewport.clientWidth+2)timer=setInterval(()=>move(1),5500)};
+  group.addEventListener("mouseenter",stop);group.addEventListener("mouseleave",start);
+  group.addEventListener("focusin",stop);group.addEventListener("focusout",e=>{if(!group.contains(e.relatedTarget))start()});
+  dialog.addEventListener("close",start);document.addEventListener("visibilitychange",()=>document.hidden?stop():start());
+  viewport.addEventListener("touchstart",stop,{passive:true});viewport.addEventListener("touchend",start,{passive:true});
+  window.addEventListener("resize",start);start();
+ }
+}
 (async()=>{try{const res=await fetch(API+"/rest/v1/event_publications?select=*&published=eq.true&order=created_at.desc",{headers:{apikey:KEY}});if(!res.ok)throw new Error("HTTP "+res.status);const posts=await res.json();posts.sort((a,b)=>{const year=p=>{const m=String(p.title||"").match(/20[0-9]{2}/)||String(p.event_date||"").match(/20[0-9]{2}/);return m?Number(m[0]):0};return year(b)-year(a)||String(b.event_date||"").localeCompare(String(a.event_date||""))||String(b.created_at).localeCompare(String(a.created_at))});render(posts)}catch(err){grid.replaceChildren();grid.append(el("p","events-empty","Não foi possível carregar as publicações agora. Tente atualizar a página."));console.error("Erro ao carregar eventos",err)}})();
