@@ -12,3 +12,13 @@
 .event-year-track .event-card{flex:0 0 min(280px,78vw);width:min(280px,78vw);min-width:0;scroll-snap-align:start;margin:0}
 @media(min-width:900px){.event-year-track .event-card{flex-basis:min(300px,29vw);width:min(300px,29vw)}}
 @media(prefers-reduced-motion:reduce){.event-year-viewport{scroll-behavior:auto}}
+
+/* Alinhamento e legibilidade das descrições dos eventos */
+.event-year-track .event-card{display:flex;flex-direction:column}
+.event-year-track .event-card:first-child{display:flex;grid-column:auto;grid-template-columns:none}
+.event-year-track .event-card img,.event-year-track .event-card:first-child img{width:100%;height:auto;min-height:0;max-height:none;aspect-ratio:4/3;object-fit:contain}
+.event-year-track .event-content,.event-year-track .event-card:first-child .event-content{display:flex;flex:1;flex-direction:column;align-self:stretch;padding:20px 20px 18px;text-align:left}
+.event-year-track .event-content small{display:block;line-height:1.5;min-height:30px;overflow-wrap:anywhere}
+.event-year-track .event-content h3{font-size:clamp(20px,2vw,24px);line-height:1.3;margin:10px 0 12px;overflow-wrap:break-word}
+.event-year-track .event-content p{font-size:14px;line-height:1.65;margin:0 0 18px;text-align:left;overflow-wrap:break-word;white-space:normal}
+.event-year-track .event-content button{margin-top:auto;align-self:flex-start;text-align:left;line-height:1.4}
