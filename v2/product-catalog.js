@@ -12,7 +12,7 @@
  const form=dialog.querySelector("form"),message=dialog.querySelector(".product-purchase-message");
  dialog.querySelector(".product-purchase-close").onclick=()=>dialog.close();
  dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close()});
- function openReport(product){form.reset();form.elements.product_id.value=product.id;message.textContent="";dialog.showModal()}
+ function openReport(product){form.reset();form.elements.product_id.value=product.id;message.textContent="";const submit=form.querySelector('[type="submit"]');submit.disabled=false;submit.textContent="Enviar aviso de compra";dialog.showModal()}
  function render(products){
   grid.replaceChildren();
   if(!products.length){grid.append(el("p","product-catalog-empty","No momento não há produtos publicados. Volte em breve para ver como ajudar."));return}
