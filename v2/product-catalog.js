@@ -23,10 +23,10 @@
    const body=el("div","product-donation-content");
    body.append(el("span","product-catalog-kicker",p.campaign_name||"PRECISAMOS DA SUA AJUDA"),el("h3","",p.title));
    if(p.description)body.append(el("p","",p.description));
-   const target=Math.max(1,Number(p.target_quantity)||1),received=Math.min(target,Math.max(0,Number(p.received_quantity)||0)),pct=Math.round(received/target*100);
+   const unlimited=p.target_quantity===null;const target=unlimited?null:Math.max(1,Number(p.target_quantity)||1),received=Math.max(0,Number(p.received_quantity)||0),pct=unlimited?0:Math.min(100,Math.round(received/target*100));
    const progress=el("div","product-quantity");
-   const label=el("div","product-quantity-label",received+" de "+target+" "+(p.unit||"unidade")+(target===1?"":"s")+" recebidos");
-   const track=el("div","product-quantity-track");track.setAttribute("role","progressbar");track.setAttribute("aria-valuemin","0");track.setAttribute("aria-valuemax",String(target));track.setAttribute("aria-valuenow",String(received));const fill=el("span","");fill.style.width=pct+"%";track.append(fill);progress.append(label,track);body.append(progress);
+   const label=el("div","product-quantity-label",unlimited?received+" "+(p.unit||"unidade")+(received===1?"":"s")+" recebidos · Meta aberta":received+" de "+target+" "+(p.unit||"unidade")+(target===1?"":"s")+" recebidos");
+   const track=el("div","product-quantity-track");track.hidden=unlimited;track.setAttribute("role","progressbar");track.setAttribute("aria-valuemin","0");track.setAttribute("aria-valuemax",String(target));track.setAttribute("aria-valuenow",String(received));const fill=el("span","");fill.style.width=pct+"%";track.append(fill);progress.append(label,track);body.append(progress);
    const actions=el("div","product-donation-actions");
    const storeUrl=validUrl(p.store_url);
    if(storeUrl){const buy=el("a","product-buy-link","Doar esse item ↗");buy.href=storeUrl;buy.target="_blank";buy.rel="noopener noreferrer";actions.append(buy)}
