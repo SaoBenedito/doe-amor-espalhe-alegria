@@ -20,7 +20,7 @@
   for(const p of products){
    const card=el("article","product-donation-card");
    const imageUrl=validUrl(p.image_url||"");
-   if(imageUrl){const image=el("img","product-donation-image");image.src=imageUrl;image.alt=p.title;image.loading="lazy";image.onerror=()=>image.remove();card.append(image)}
+   if(imageUrl){const image=el("img","product-donation-image");image.src=imageUrl;image.alt=p.title;image.loading="lazy";image.decoding="async";image.onerror=()=>image.remove();card.append(image)}
    const body=el("div","product-donation-content");
    body.append(el("span","product-catalog-kicker",p.campaign_name||"PRECISAMOS DA SUA AJUDA"),el("h3","",p.title));
    if(p.description)body.append(el("p","",p.description));
