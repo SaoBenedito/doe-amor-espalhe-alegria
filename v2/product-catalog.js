@@ -23,7 +23,7 @@
    if(imageUrl){const image=el("img","product-donation-image");image.src=imageUrl;image.alt=p.title;image.loading="lazy";image.decoding="async";image.onerror=()=>image.remove();card.append(image)}
    const body=el("div","product-donation-content");
    body.append(el("span","product-catalog-kicker",p.campaign_name||"PRECISAMOS DA SUA AJUDA"),el("h3","",p.title));
-   if(p.description)body.append(el("p","",p.description));
+   if(p.description){const details=el("details","product-description-details");const summary=el("summary","product-description-summary","Sobre este produto");const description=el("p","product-description-text",p.description);details.append(summary,description);body.append(details)}
    const unlimited=p.target_quantity===null;const target=unlimited?null:Math.max(1,Number(p.target_quantity)||1),received=Math.max(0,Number(p.received_quantity)||0),pct=unlimited?0:Math.min(100,Math.round(received/target*100));
    const progress=el("div","product-quantity");
    const label=el("div","product-quantity-label",unlimited?received+" "+(p.unit||"unidade")+(received===1?"":"s")+" recebidos · Meta aberta":received+" de "+target+" "+(p.unit||"unidade")+(target===1?"":"s")+" recebidos");
