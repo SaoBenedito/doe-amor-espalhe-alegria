@@ -24,13 +24,16 @@ window.renderProductCatalogAdmin=async function(client,area,status){
   else{input=document.createElement("input");input.type=type;if(type==="number"){input.min="1";input.step="1";input.value="1"}if(type==="checkbox")input.style.width="auto"}
   input.name=name;input.required=required;if(placeholder&&type!=="checkbox"&&type!=="select")input.placeholder=placeholder;input.style.maxWidth="100%";if(type!=="checkbox"){input.style.display="block";input.style.width="100%";input.style.boxSizing="border-box";input.style.marginTop="5px";input.style.padding="10px"}wrap.append(input);form.append(wrap);controls[name]=input;
  }
+ const photo=document.createElement("input");photo.type="file";photo.accept="image/jpeg,image/png,image/webp";const photoLabel=document.createElement("label");photoLabel.textContent="Enviar foto do produto (JPG, PNG ou WebP, até 5 MB)";photoLabel.append(photo);form.append(photoLabel);
+ const preview=document.createElement("img");preview.alt="Prévia da foto";preview.style.cssText="display:none;max-width:220px;max-height:180px;object-fit:contain";form.append(preview);
+ photo.onchange=()=>{const file=photo.files[0];if(!file)return;preview.src=URL.createObjectURL(file);preview.style.display="block";};
  const actions=document.createElement("div");actions.style.display="flex";actions.style.gap="10px";actions.style.flexWrap="wrap";
  const save=document.createElement("button");save.type="submit";save.textContent="Salvar produto";
  const cancel=document.createElement("button");cancel.type="button";cancel.textContent="Cancelar edição";cancel.hidden=true;cancel.style.background="#64748b";actions.append(save,cancel);form.append(actions);area.append(form);
  const msg=document.createElement("p");msg.setAttribute("role","status");msg.setAttribute("aria-live","polite");area.append(msg);
  const list=document.createElement("div");area.append(list);
  let editing=null;
- function clear(){editing=null;form.reset();controls.target_quantity.value="1";controls.unit.value="unidade";save.textContent="Cadastrar produto";cancel.hidden=true}
+ function clear(){editing=null;form.reset();photo.value="";preview.style.display="none";controls.target_quantity.value="1";controls.unit.value="unidade";save.textContent="Cadastrar produto";cancel.hidden=true}
  cancel.onclick=clear;
  const safeUrl=(v,required=false)=>{if(!v&&!required)return null;let u;try{u=new URL(v)}catch{throw Error("Confira os links informados.")}if(u.protocol!=="https:")throw Error("Use links seguros começando com https://.");return u.href};
  async function load(){
@@ -57,6 +60,7 @@ window.renderProductCatalogAdmin=async function(client,area,status){
    if(!Number.isInteger(payload.target_quantity)||payload.target_quantity<1)throw Error("Informe uma quantidade desejada válida.");
   }catch(err){msg.textContent=err.message;return}
   save.disabled=true;msg.textContent="Salvando produto...";
+  if(photo.files[0]){const file=photo.files[0];if(!["image/jpeg","image/png","image/webp"].includes(file.type)||file.size>5242880){save.disabled=false;msg.textContent="Use uma imagem JPG, PNG ou WebP de até 5 MB.";return}const ext=file.type==="image/png"?"png":file.type==="image/webp"?"webp":"jpg";const path="eventos/produtos-solidarios/"+crypto.randomUUID()+"."+ext;const uploaded=await client.storage.from("site-publico").upload(path,file,{contentType:file.type});if(uploaded.error){save.disabled=false;msg.textContent="Falha no envio da foto: "+uploaded.error.message;return}payload.image_url=client.storage.from("site-publico").getPublicUrl(path).data.publicUrl;}
   const query=editing?client.from("product_donation_products").update(payload).eq("id",editing):client.from("product_donation_products").insert(payload);
   const {error}=await query;save.disabled=false;
   if(error){msg.textContent="Erro ao salvar: "+error.message;return}
