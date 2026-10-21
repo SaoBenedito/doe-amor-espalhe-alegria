@@ -1,0 +1,19 @@
+/* Cartões de doação: aparência moderna sem alterar integrações */
+#doar .donate-grid{align-items:stretch;gap:clamp(18px,2.5vw,28px);max-width:1020px}
+#doar .donate-grid>article{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:clamp(24px,3vw,38px);border-radius:26px;border:1px solid #f1dfe5;background:linear-gradient(160deg,#fff 62%,#fff8fb);box-shadow:0 12px 32px #74374c0d,0 3px 10px #74374c09;transition:transform .32s ease,box-shadow .32s ease,border-color .32s ease;animation:donateCardReveal .55s ease both}
+#doar .donate-grid>article:nth-child(2){animation-delay:.1s}
+#doar .donate-grid>article:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#db3d7d,#f5a8c5,#7bc8ad)}
+#doar .donate-grid .symbol{display:grid;place-items:center;width:56px;height:56px;margin-bottom:16px;border-radius:18px;background:linear-gradient(140deg,#ffe6f0,#fff4f8);border:1px solid #f7d5e3;color:#cc3273;font-size:27px;line-height:1}
+#doar .donate-grid h3{margin:0 0 12px;color:#194c46;font-size:clamp(24px,2.3vw,30px);letter-spacing:-.025em;line-height:1.2}
+#doar .donate-grid p{margin:0 0 16px;font-size:14px;line-height:1.7}
+#doar .donate-grid .pill,#doar .donate-grid .donation-form button{display:inline-flex;align-items:center;justify-content:center;min-height:43px;max-width:100%;box-sizing:border-box;padding:11px 17px;border-radius:13px;font-weight:800;line-height:1.35;text-align:center;text-decoration:none;transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
+#doar .donate-grid .donation-form{width:100%;margin-top:4px}
+#doar .donate-grid .donation-form label{display:block}
+#doar .donate-grid .donation-form select,#doar .donate-grid .donation-form input{max-width:100%;box-sizing:border-box;border-radius:12px}
+#doar .donate-grid .donation-form button{background:linear-gradient(105deg,#d73378,#e95498);box-shadow:0 7px 16px #d7337820}
+#doar .donate-grid>article:nth-child(2)>button.pill{margin-top:0}
+#doar .donate-grid a:focus-visible,#doar .donate-grid button:focus-visible{outline:3px solid #185e52;outline-offset:3px}
+@media(hover:hover) and (pointer:fine){#doar .donate-grid>article:hover{transform:translateY(-6px);border-color:#efb8cd;box-shadow:0 22px 48px #74374c19}#doar .donate-grid .pill:hover,#doar .donate-grid .donation-form button:hover{transform:translateY(-2px);filter:brightness(1.035)}}
+@keyframes donateCardReveal{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){#doar .donate-grid{grid-template-columns:1fr;max-width:560px}#doar .donate-grid>article{padding:clamp(22px,5vw,32px)}}
+@media(prefers-reduced-motion:reduce){#doar .donate-grid>article{animation:none;transition:none}#doar .donate-grid .pill,#doar .donate-grid .donation-form button{transition:none}}
