@@ -29,7 +29,7 @@
    const track=el("div","product-quantity-track");track.setAttribute("role","progressbar");track.setAttribute("aria-valuemin","0");track.setAttribute("aria-valuemax",String(target));track.setAttribute("aria-valuenow",String(received));const fill=el("span","");fill.style.width=pct+"%";track.append(fill);progress.append(label,track);body.append(progress);
    const actions=el("div","product-donation-actions");
    const storeUrl=validUrl(p.store_url);
-   if(storeUrl){const buy=el("a","product-buy-link","Ver na "+(p.store_name||"loja")+" ↗");buy.href=storeUrl;buy.target="_blank";buy.rel="noopener noreferrer";actions.append(buy)}
+   if(storeUrl){const buy=el("a","product-buy-link","Doar esse item ↗");buy.href=storeUrl;buy.target="_blank";buy.rel="noopener noreferrer";actions.append(buy)}
    const report=el("button","product-report-link","Já comprei este item");report.type="button";report.onclick=()=>openReport(p);actions.append(report);body.append(actions);card.append(body);grid.append(card);
   }
  }
