@@ -22,3 +22,24 @@
 .product-delivery-guidance{margin-top:10px!important;font-size:.84rem!important;line-height:1.55!important;color:#f0faf6!important;max-width:600px}
 .product-delivery-contact{display:flex;justify-content:center;align-items:center;min-height:42px;padding:10px 14px;border-radius:12px;background:#e2f6ed;color:#13543f;font:inherit;font-size:.83rem;font-weight:850;text-align:center;text-decoration:none;box-sizing:border-box;transition:transform .2s,background .2s}
 .product-delivery-contact:hover{background:#fff;transform:translateY(-2px)}
+
+/* Vitrine solidária: cartões refinados e animações leves */
+.product-donation-grid{gap:clamp(18px,2.5vw,28px);align-items:stretch}
+.product-donation-card{position:relative;isolation:isolate;border:1px solid #e6e9e8;border-radius:24px;background:linear-gradient(165deg,#fff 70%,#fffafd);box-shadow:0 6px 18px #153f3910,0 18px 42px #153f3909;transition:transform .32s cubic-bezier(.2,.7,.2,1),box-shadow .32s ease,border-color .32s ease;animation:solidaryCardEnter .55s both}
+.product-donation-card:nth-child(2){animation-delay:.07s}.product-donation-card:nth-child(3){animation-delay:.14s}.product-donation-card:nth-child(4){animation-delay:.21s}
+.product-donation-card::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#e94890,#f4a6c5 48%,#69bba1);z-index:1}
+.product-donation-image{aspect-ratio:4/3;padding:clamp(16px,3vw,24px);background:radial-gradient(circle at 50% 45%,#fff 0%,#f5f8f7 85%);transition:transform .4s ease;display:block}
+.product-donation-content{padding:clamp(19px,2.5vw,25px);gap:2px}
+.product-donation-content h3{font-size:clamp(1.1rem,1.8vw,1.25rem);line-height:1.36;font-weight:800;letter-spacing:-.02em;overflow-wrap:anywhere}
+.product-donation-content p{font-size:.94rem;line-height:1.65}
+.product-donation-content .product-catalog-kicker{font-size:.68rem;letter-spacing:.13em}
+.product-quantity{padding:12px 14px;background:#f5faf7;border:1px solid #e5f0e9;border-radius:13px;box-sizing:border-box}
+.product-donation-actions{gap:10px}
+.product-buy-link,.product-report-link{min-height:48px;border-radius:13px;box-sizing:border-box;transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
+.product-buy-link{background:linear-gradient(105deg,#d72c77,#e95498);box-shadow:0 5px 14px #d83d7b28}
+.product-report-link{border:1px solid #d4e9df;background:linear-gradient(100deg,#eaf6ef,#f3faf6)}
+.product-buy-link:focus-visible,.product-report-link:focus-visible{outline:3px solid #185e52;outline-offset:3px}
+@media(hover:hover) and (pointer:fine){.product-donation-card:hover{transform:translateY(-6px);border-color:#e7b5cb;box-shadow:0 16px 32px #153f3918,0 28px 60px #d83d7b10}.product-donation-card:hover .product-donation-image{transform:scale(1.025)}.product-buy-link:hover,.product-report-link:hover{transform:translateY(-2px);filter:brightness(1.025)}}
+@keyframes solidaryCardEnter{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.product-donation-grid{gap:20px}.product-donation-card{border-radius:22px}.product-donation-image{aspect-ratio:4/3;padding:18px}.product-donation-content{padding:21px}.product-buy-link,.product-report-link{min-height:50px}}
+@media(prefers-reduced-motion:reduce){.product-donation-card{animation:none;transition:none}.product-donation-image,.product-buy-link,.product-report-link{transition:none}}
