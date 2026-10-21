@@ -2,7 +2,7 @@
 window.renderProductCatalogAdmin=async function(client,area,status){
  area.replaceChildren();
  const heading=document.createElement("h2");heading.textContent="Lista pública de produtos solidários";area.append(heading);
- const help=document.createElement("p");help.textContent="Cadastre os itens que a comunidade pode comprar diretamente na Shopee, no Mercado Livre ou em outra loja. Só publique links https confiáveis. A quantidade recebida é atualizada quando a equipe confirma um aviso de compra como Recebido.";area.append(help);
+ const help=document.createElement("p");help.textContent="Cadastre os itens que a comunidade pode comprar diretamente na Shopee, no Mercado Livre ou em outra loja. Só publique links https confiáveis. Ponto de entrega: Rua Amando de Oliveira Rocha Filho, nº 519, bairro Lavínia, Marília/SP. A quantidade recebida só é atualizada quando a equipe confirma manualmente a entrega como Recebido e conferido.";area.append(help);
  const form=document.createElement("form");form.className="admin-record-form";form.style.maxWidth="820px";
  const fields=[
   ["title","Nome do produto","text",true,"Ex.: Pacote de fraldas tamanho G"],
@@ -69,7 +69,7 @@ window.renderProductCatalogAdmin=async function(client,area,status){
  await load();
  const divider=document.createElement("hr");divider.style.margin="36px 0";area.append(divider);
  const reportsTitle=document.createElement("h2");reportsTitle.textContent="Avisos de compra enviados pela comunidade";area.append(reportsTitle);
- const reportsHelp=document.createElement("p");reportsHelp.textContent="O aviso não significa que o produto já chegou. Altere para Recebido somente depois que a equipe conferir a entrega.";area.append(reportsHelp);
+ const reportsHelp=document.createElement("p");reportsHelp.textContent="O aviso de compra não comprova a entrega. Confirme como Recebido e conferido somente depois que a equipe receber fisicamente e conferir o produto no ponto de entrega da Rua Amando de Oliveira Rocha Filho, nº 519, bairro Lavínia, Marília/SP.";area.append(reportsHelp);
  const reports=document.createElement("div");area.append(reports);
  async function loadReports(){
   reports.replaceChildren();const {data,error}=await client.from("product_donation_purchase_reports").select("id,product_id,donor_name,contact,quantity,order_reference,notes,status,created_at,product_donation_products(title,unit)").order("created_at",{ascending:false}).limit(200);
